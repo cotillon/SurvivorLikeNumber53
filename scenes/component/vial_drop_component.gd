@@ -13,11 +13,9 @@ func _ready():
 	(health_component as HealthComponent).died.connect(on_died)
 
 
-
 func on_died():
 	if randf() > drop_percent:
 		return
-
 
 	if vial_scene == null:
 		return

@@ -31,7 +31,7 @@ func on_timer_timeout():
 	enemies = enemies.filter(func(enemy: Node2D):
 		return enemy.global_position.distance_squared_to(player.global_position) < pow(MAX_RANGE, 2)
 	)
-
+	#no enemies in range? do nothing
 	if enemies.size() == 0:
 		return
 
@@ -50,19 +50,20 @@ func on_timer_timeout():
 	#assign our damage to the hitbox's damage component
 	sword_instance.hitbox_component.damage = calculate_damage()
 
+	#spawn the sword on the enemy position, then offset it by 4 pixels
 	sword_instance.global_position = enemies[0].global_position
 	sword_instance.global_position += Vector2.RIGHT.rotated(randf_range(0, TAU)) * 4
 
+	#rotate the sword to face the enemy
 	var enemy_direction = enemies[0].global_position - sword_instance.global_position
 	sword_instance.rotation = enemy_direction.angle()
 
 
-#applies our damage scaling formula
+#applies our damage scaling formula and returns the result
 func calculate_damage() -> float:
 	var total_damage = (BASE_DAMAGE + added_flat_damage) * damage_percent_increase
 
 	return total_damage
-
 
 
 #listen for the game event upgrade added, then filter for the sword upgrade
