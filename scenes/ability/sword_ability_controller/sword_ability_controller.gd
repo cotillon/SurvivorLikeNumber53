@@ -62,15 +62,14 @@ func on_timer_timeout():
 #applies our damage scaling formula and returns the result
 func calculate_damage() -> float:
 	var total_damage = (BASE_DAMAGE + added_flat_damage) * damage_percent_increase
-
 	return total_damage
 
 
 #listen for the game event upgrade added, then filter for the sword upgrade
 func on_ability_upgrade_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary):
-	if upgrade.id != "sword_rate":
-		return
-
-	var percent_reduction = current_upgrades["sword_rate"]["quantity"] * .1
-	$Timer.wait_time = base_wait_time * (1 - percent_reduction)
-	$Timer.start()
+	if upgrade.id == "sword_rate":
+		var percent_reduction = current_upgrades["sword_rate"]["quantity"] * .1
+		$Timer.wait_time = base_wait_time * (1 - percent_reduction)
+		$Timer.start()
+	elif upgrade.id == "sword_damage":
+		damage_percent_increase = 1 + (current_upgrades["sword_damage"]["quantity"] * .15)
