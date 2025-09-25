@@ -38,6 +38,10 @@ enemies="contains all enemies"
 entities_layer=""
 foreground_layer=""
 
+[gui]
+
+theme/custom="uid://fgu0tee5m542"
+
 [input]
 
 move_up={
