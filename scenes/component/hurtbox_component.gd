@@ -27,4 +27,9 @@ func on_area_entered(other_area: Area2D):
 
 	#position our floating text 16 pixels above the hurtbox
 	floating_text.global_position = global_position + (Vector2.UP * 16)
-	floating_text.start(str(hitbox_component.damage))
+
+	var format_string = "%0.1f"
+	if round(hitbox_component.damage) == hitbox_component.damage:
+		format_string = "%0.0f"
+
+	floating_text.start(format_string % hitbox_component.damage)
