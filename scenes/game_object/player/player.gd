@@ -1,8 +1,5 @@
 extends CharacterBody2D
 
-#@export var MAX_ALLOWABLE_SPEED = 2000
-@export var speed: int = 125
-@export var acceleration_smoothing: int = 25
 
 #our iframes
 @onready var damage_interval_timer = $DamageIntervalTimer
@@ -11,13 +8,17 @@ extends CharacterBody2D
 @onready var abilities = $Abilities
 @onready var animation_player = $AnimationPlayer
 @onready var visuals = $Visuals
-
+@onready var velocity_component = $VelocityComponent
 
 #the total damage we should be taking according to how many enemies
 #are colliding with player and their respective damages
 var taking_damage_bucket = 0
 
+var base_speed = 0
+
 func _ready() -> void:
+	base_speed = velocity_component.max_speed
+
 	$CollisionArea2D.body_entered.connect(on_body_entered)
 	$CollisionArea2D.body_exited.connect(on_body_exited)
 	damage_interval_timer.timeout.connect(on_damage_interval_timer_timeout)
@@ -31,11 +32,10 @@ func _process(delta: float) -> void:
 	var movement_vector = get_movement_vector()
 	var direction = movement_vector.normalized()
 
-	var target_velocity = direction * speed
+	velocity_component.accelerate_in_direction(direction)
+	velocity_component.move(self)
 
-	velocity = velocity.lerp(target_velocity, 1 - exp(-delta * acceleration_smoothing))
 
-	move_and_slide()
 
 	#animate the player while moving
 	if movement_vector.x != 0 || movement_vector.y != 0:
@@ -85,12 +85,13 @@ func on_damage_interval_timer_timeout():
 
 
 func on_health_changed():
+	GameEvents.emit_player_damaged()
 	update_health_display()
 
 
 func on_ability_upgrade_added(ability_upgrade: AbilityUpgrade, current_upgrades: Dictionary):
-	if not ability_upgrade is Ability:
-		return
-
-	var ability = ability_upgrade as Ability
-	abilities.add_child(ability.ability_controller_scene.instantiate())
+	if ability_upgrade is Ability:
+		var ability = ability_upgrade as Ability
+		abilities.add_child(ability.ability_controller_scene.instantiate())
+	elif ability_upgrade.id == "player_speed":
+		velocity_component.max_speed = base_speed + (base_speed * current_upgrades["player_speed"]["quantity"] * 0.1)

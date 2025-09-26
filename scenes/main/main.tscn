@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://owuageaq4msn"]
+[gd_scene load_steps=14 format=4 uid="uid://owuageaq4msn"]
 
 [ext_resource type="PackedScene" uid="uid://dba8x0j6urcdh" path="res://scenes/ui/arena_time_ui.tscn" id="1_6q06x"]
 [ext_resource type="Script" uid="uid://dss80x6cxj25f" path="res://scenes/main/main.gd" id="1_a8run"]
@@ -10,12 +10,15 @@
 [ext_resource type="PackedScene" uid="uid://c0mvnm88mlf0d" path="res://scenes/manager/arena_time_manager.tscn" id="2_ow5a4"]
 [ext_resource type="PackedScene" uid="uid://dv58ilqc4h3mt" path="res://scenes/ui/experience_bar.tscn" id="2_yyfjg"]
 [ext_resource type="PackedScene" uid="uid://c4uefqcw8ja6m" path="res://scenes/game_object/game_camera/game_camera.tscn" id="3_k2fmo"]
+[ext_resource type="PackedScene" uid="uid://ccuyslf7wkr3s" path="res://scenes/ui/vignette.tscn" id="3_th5th"]
 [ext_resource type="PackedScene" uid="uid://fl1s38danhlx" path="res://scenes/manager/upgrade_manager.tscn" id="4_b1x3f"]
 [ext_resource type="PackedScene" uid="uid://bwxw46wurv3jn" path="res://scenes/game_object/wizard_enemy/wizard_enemy.tscn" id="9_blune"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_a8run")
 end_screen_scene = ExtResource("2_ouso4")
+
+[node name="Vignette" parent="." instance=ExtResource("3_th5th")]
 
 [node name="ArenaTimeUI" parent="." node_paths=PackedStringArray("arena_time_manager") instance=ExtResource("1_6q06x")]
 arena_time_manager = NodePath("../ArenaTimeManager")
