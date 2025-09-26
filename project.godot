@@ -37,6 +37,7 @@ player="houses only the player"
 enemies="contains all enemies"
 entities_layer=""
 foreground_layer=""
+upgrade_card=""
 
 [gui]
 
