@@ -21,6 +21,16 @@ func _ready():
 func set_defeat():
 	$%TitleLabel.text = "YOU DIED"
 	$%DescriptionLabel.text = "get gud"
+	play_jingle(true)
+
+
+func play_jingle(defeat: bool = false):
+	if defeat:
+		$DefeatStreamPlayer.play()
+	else:
+		$VictoryStreamPlayer.play()
+
+
 
 
 func on_quit_button_pressed():

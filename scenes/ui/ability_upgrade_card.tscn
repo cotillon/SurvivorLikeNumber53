@@ -1,17 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://dwnm41j1f1d5p"]
+[gd_scene load_steps=13 format=3 uid="uid://dwnm41j1f1d5p"]
 
 [ext_resource type="Script" uid="uid://ddsyj2bs5hdew" path="res://scenes/ui/ability_upgrade_card.gd" id="1_8ur3e"]
 [ext_resource type="PackedScene" uid="uid://ce8dho20tqb1o" path="res://scenes/component/random_stream_player_component.tscn" id="2_xicjk"]
-[ext_resource type="AudioStream" uid="uid://ya6j8cfshdn3" path="res://assets/audio/switch1.ogg" id="3_ksxgh"]
-[ext_resource type="AudioStream" uid="uid://d6ohivps276s" path="res://assets/audio/switch2.ogg" id="4_g40w5"]
-[ext_resource type="AudioStream" uid="uid://dexscdru4jddc" path="res://assets/audio/switch3.ogg" id="5_wv0wr"]
-[ext_resource type="AudioStream" uid="uid://dua4opua5mshn" path="res://assets/audio/switch4.ogg" id="6_puu13"]
-[ext_resource type="AudioStream" uid="uid://dtlaorfoe0y35" path="res://assets/audio/switch5.ogg" id="7_kt4ni"]
-[ext_resource type="AudioStream" uid="uid://7selw7bceywx" path="res://assets/audio/switch6.ogg" id="8_r6bay"]
-[ext_resource type="AudioStream" uid="uid://cl53c4aur6krl" path="res://assets/audio/switch7.ogg" id="9_ut4pq"]
-[ext_resource type="AudioStream" uid="uid://bxdgpb7h1e7ua" path="res://assets/audio/switch8.ogg" id="10_m713t"]
-[ext_resource type="AudioStream" uid="uid://ceknu5j4cgeix" path="res://assets/audio/switch9.ogg" id="11_gnty3"]
-[ext_resource type="AudioStream" uid="uid://qgn387hx6no4" path="res://assets/audio/switch10.ogg" id="12_vel0p"]
+[ext_resource type="AudioStream" uid="uid://bm5u11ncnablr" path="res://assets/audio/impactGeneric_light_002.ogg" id="3_g40w5"]
+[ext_resource type="AudioStream" uid="uid://c3cklor37j63a" path="res://assets/audio/click1.ogg" id="4_uhqci"]
 
 [sub_resource type="Animation" id="Animation_m44y0"]
 length = 0.001
@@ -210,12 +202,11 @@ script = ExtResource("1_8ur3e")
 
 [node name="HoverPlayerComponent" parent="." instance=ExtResource("2_xicjk")]
 volume_db = -23.152
-streams = Array[AudioStream]([ExtResource("3_ksxgh"), ExtResource("4_g40w5"), ExtResource("5_wv0wr"), ExtResource("6_puu13"), ExtResource("7_kt4ni"), ExtResource("8_r6bay"), ExtResource("9_ut4pq"), ExtResource("10_m713t"), ExtResource("11_gnty3"), ExtResource("12_vel0p")])
-randomize_pitch = false
+streams = Array[AudioStream]([ExtResource("3_g40w5")])
 
 [node name="ClickPlayerComponent" parent="." instance=ExtResource("2_xicjk")]
-streams = Array[AudioStream]([ExtResource("3_ksxgh"), ExtResource("4_g40w5"), ExtResource("5_wv0wr"), ExtResource("6_puu13"), ExtResource("7_kt4ni"), ExtResource("8_r6bay"), ExtResource("9_ut4pq"), ExtResource("10_m713t"), ExtResource("11_gnty3"), ExtResource("12_vel0p")])
-randomize_pitch = false
+volume_db = -10.182
+streams = Array[AudioStream]([ExtResource("4_uhqci")])
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -262,6 +253,6 @@ layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0.14901961, 0.16862746, 0.26666668, 1)
 theme_override_colors/font_outline_color = Color(0.14901961, 0.16862746, 0.26666668, 1)
 theme_override_constants/outline_size = 6
-text = "Huh? What? How did this get here?"
+text = "Congrats, you found a bug! Proud of yourself?"
 horizontal_alignment = 1
 autowrap_mode = 2
