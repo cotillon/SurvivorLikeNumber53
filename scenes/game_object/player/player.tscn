@@ -1,10 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://yoevpxq4p4yx"]
+[gd_scene load_steps=20 format=3 uid="uid://yoevpxq4p4yx"]
 
 [ext_resource type="Script" uid="uid://b7a730nfxnjpo" path="res://scenes/game_object/player/player.gd" id="1_dovo2"]
 [ext_resource type="Texture2D" uid="uid://n7f3kgpsbdnd" path="res://scenes/game_object/player/player.png" id="2_gmlin"]
 [ext_resource type="PackedScene" uid="uid://bb6ejt5x1cmx7" path="res://scenes/ability/sword_ability_controller/sword_ability_controller.tscn" id="2_lvxji"]
 [ext_resource type="Script" uid="uid://61eyujb4srks" path="res://scenes/component/health_component.gd" id="2_ss5pk"]
 [ext_resource type="PackedScene" uid="uid://cmjp036op6ubi" path="res://scenes/component/velocity_component.tscn" id="2_tj6oj"]
+[ext_resource type="PackedScene" uid="uid://cnwkwdlt8fb8d" path="res://scenes/component/random_steam_player_2d_component.tscn" id="4_gbew5"]
+[ext_resource type="AudioStream" uid="uid://b6sb254k2yfop" path="res://assets/audio/impactMining_000.ogg" id="5_oxhc3"]
+[ext_resource type="AudioStream" uid="uid://f2cfss62cbf3" path="res://assets/audio/impactMining_001.ogg" id="6_mxgtx"]
+[ext_resource type="AudioStream" uid="uid://phphiihlk6q8" path="res://assets/audio/impactMining_002.ogg" id="7_l1g56"]
+[ext_resource type="AudioStream" uid="uid://b5lyqsjftwklq" path="res://assets/audio/impactMining_003.ogg" id="8_llc7q"]
+[ext_resource type="AudioStream" uid="uid://pdj2yjks6ucx" path="res://assets/audio/impactMining_004.ogg" id="9_bfkik"]
 
 [sub_resource type="Animation" id="Animation_tj6oj"]
 length = 0.001
@@ -158,6 +164,10 @@ libraries = {
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("2_ss5pk")
 metadata/_custom_type_script = "uid://61eyujb4srks"
+
+[node name="RandomSteamPlayer2DComponent" parent="." instance=ExtResource("4_gbew5")]
+streams = Array[AudioStream]([ExtResource("5_oxhc3"), ExtResource("6_mxgtx"), ExtResource("7_l1g56"), ExtResource("8_llc7q"), ExtResource("9_bfkik")])
+randomize_pitch = false
 
 [node name="Abilities" type="Node" parent="."]
 
