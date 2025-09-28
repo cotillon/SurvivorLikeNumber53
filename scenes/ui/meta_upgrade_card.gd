@@ -1,53 +1,43 @@
 extends PanelContainer
 
-signal selected
-
 @onready var name_label: Label = $%NameLabel
 @onready var description_label: Label = $%DescriptionLabel
+@onready var progress_bar: ProgressBar = $%ProgressBar
+@onready var purchase_button: Button = %PurchaseButton
+@onready var progress_label: Label = %ProgressLabel
 
-var disabled = false
+var upgrade_ref: MetaUpgrade
 
 
 func _ready():
-	gui_input.connect(on_gui_input)
-	mouse_entered.connect(on_mouse_entered)
-
-
-
-#play our into bounce animation, called from upgrade screen
-func play_in(delay: float = 0):
-	#make the card invisible until the animation starts
-	modulate = Color.TRANSPARENT
-	await get_tree().create_timer(delay).timeout	#allow for a delay between cards
-	$AnimationPlayer.play("in")
-
+	purchase_button.pressed.connect(on_purchase_pressed)
 
 
 func set_meta_upgrade(upgrade: MetaUpgrade):
-	name_label.text = upgrade.name
+	upgrade_ref = upgrade
+	name_label.text = upgrade.title
 	description_label.text = upgrade.description
+	update_progress()
 
-
-
-func on_gui_input(event: InputEvent):
-	if disabled:
-		return
-
-	if event.is_action_pressed("left_click"):
-		select_card()
+# TODO: format the progress label text
+func update_progress():
+	var currency = MetaProgression.save_data["meta_upgrade_currency"]
+	var percent = currency / upgrade_ref.experience_cost
+	percent = min(percent, 1)
+	progress_bar.value = percent
+	purchase_button.disabled = percent < 1
+	progress_label.text = str(currency) + "/" + str(upgrade_ref.experience_cost)
 
 
 func select_card():
-	disabled = true
 	$AnimationPlayer.play("selected")
 
 
-	await $AnimationPlayer.animation_finished
-	selected.emit()
-
-
-func on_mouse_entered():
-	if disabled:
+func on_purchase_pressed():
+	if upgrade_ref == null:
 		return
-
-	$HoverAnimationPlayer.play("hover")
+	MetaProgression.add_meta_upgrade(upgrade_ref)
+	MetaProgression.save_data["meta_upgrade_currency"] -= upgrade_ref.experience_cost
+	MetaProgression.save()
+	get_tree().call_group("meta_upgrade_card", "update_progress")
+	$AnimationPlayer.play("selected")
