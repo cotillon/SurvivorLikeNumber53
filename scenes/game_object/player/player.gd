@@ -6,9 +6,10 @@ extends CharacterBody2D
 @onready var health_component = $HealthComponent
 @onready var health_bar = $HealthBar
 @onready var abilities = $Abilities
-@onready var animation_player = $AnimationPlayer
 @onready var visuals = $Visuals
 @onready var velocity_component = $VelocityComponent
+@onready var animated_sprite_2d: AnimatedSprite2D = $Visuals/AnimatedSprite2D
+
 
 #the total damage we should be taking according to how many enemies
 #are colliding with player and their respective damages
@@ -34,20 +35,7 @@ func _process(delta: float) -> void:
 
 	velocity_component.accelerate_in_direction(direction)
 	velocity_component.move(self)
-
-
-
-	#animate the player while moving
-	if movement_vector.x != 0 || movement_vector.y != 0:
-		animation_player.play("walk2")
-	else:
-		animation_player.play("RESET")
-
-	#flip our player based on direction
-	var move_sign = sign(movement_vector.x)
-	if move_sign != 0:
-		visuals.scale = Vector2(move_sign, 1)
-
+	animate_and_flip(movement_vector)
 
 
 #returns a vector with our desired x/y movement
@@ -64,11 +52,25 @@ func check_deal_damage():
 
 	health_component.damage(taking_damage_bucket)
 	damage_interval_timer.start()
-	print_debug(health_component.current_health)
+
 
 
 func update_health_display():
 	health_bar.value = health_component.get_health_percent()
+
+
+func animate_and_flip(movement_vector):
+		#animate the entity while moving
+	if movement_vector.x != 0 || movement_vector.y != 0:
+		animated_sprite_2d.play("run")
+	else:
+		animated_sprite_2d.play("idle")
+
+	#flip our player based on direction
+	var move_sign = sign(movement_vector.x)
+	if move_sign != 0:
+		visuals.scale = Vector2(move_sign, 1)
+
 
 
 func on_body_entered(other_body: Node2D):

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://f4t43124n5eo" path="res://scenes/ui/options_menu.gd" id="1_imaij"]
 [ext_resource type="PackedScene" uid="uid://ccuyslf7wkr3s" path="res://scenes/ui/vignette.tscn" id="2_0ejsc"]
-[ext_resource type="TileSet" uid="uid://vxf4o0f0ma3d" path="res://resources/tileset.tres" id="2_c4822"]
+[ext_resource type="TileSet" uid="uid://vxf4o0f0ma3d" path="res://resources/tilesets/tileset.tres" id="2_c4822"]
 [ext_resource type="PackedScene" uid="uid://dqhxxnrjcifuh" path="res://scenes/ui/sound_button.tscn" id="3_0ejsc"]
 
 [node name="OptionsMenu" type="CanvasLayer"]

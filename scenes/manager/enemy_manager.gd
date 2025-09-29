@@ -3,10 +3,9 @@ extends Node
 const SPAWN_RADIUS = 375
 
 @export var basic_enemy_scene: PackedScene
-@export var wizard_enemy_scene: PackedScene
-@export var bat_enemy_scene: PackedScene
+@export var hellhound_enemy_scene: PackedScene
+@export var eye_demon_enemy_scene: PackedScene
 @export var arena_time_manager: Node
-
 
 @onready var timer = $Timer
 
@@ -55,11 +54,9 @@ func get_spawn_position():
 func on_timer_timeout():
 	timer.start()
 
-
 	var player = get_tree().get_first_node_in_group("player") as Node2D
 	if player == null:
 		return
-
 
 	var enemy_scene = enemy_table.pick_item()
 	var enemy = enemy_scene.instantiate() as Node2D
@@ -69,7 +66,6 @@ func on_timer_timeout():
 	enemy.global_position = get_spawn_position()
 
 
-
 func on_arena_difficulty_increased(arena_difficulty: int):
 	var time_off = (0.1 / 12) * arena_difficulty
 	time_off = min(time_off, 0.7)
@@ -77,6 +73,6 @@ func on_arena_difficulty_increased(arena_difficulty: int):
 
 	#TODO TODO TODO
 	if arena_difficulty == 2:
-		enemy_table.add_item(wizard_enemy_scene, 15)
+		enemy_table.add_item(hellhound_enemy_scene, 15)
 	elif arena_difficulty == 4:
-		enemy_table.add_item(bat_enemy_scene, 10)
+		enemy_table.add_item(eye_demon_enemy_scene, 10)

@@ -1,15 +1,15 @@
 [gd_scene load_steps=5 format=3 uid="uid://bw0vq06j3hh6o"]
 
 [ext_resource type="Script" uid="uid://03wytwe703xo" path="res://scenes/manager/enemy_manager.gd" id="1_jybml"]
-[ext_resource type="PackedScene" uid="uid://bdpi4wrl8daod" path="res://scenes/game_object/basic_enemy/basic_enemy.tscn" id="2_1w3g6"]
-[ext_resource type="PackedScene" uid="uid://bwxw46wurv3jn" path="res://scenes/game_object/wizard_enemy/wizard_enemy.tscn" id="3_bortd"]
-[ext_resource type="PackedScene" uid="uid://xia6xjmr06m6" path="res://scenes/game_object/bat_enemy/bat_enemy.tscn" id="4_8jsg4"]
+[ext_resource type="PackedScene" uid="uid://bdpi4wrl8daod" path="res://scenes/game_object/enemies/basic_enemy/basic_enemy.tscn" id="2_1w3g6"]
+[ext_resource type="PackedScene" uid="uid://bv8cieg0i3sm1" path="res://scenes/game_object/enemies/hellhound_enemy/hellhound_enemy.tscn" id="3_8jsg4"]
+[ext_resource type="PackedScene" uid="uid://b5emcibnebj7h" path="res://scenes/game_object/enemies/eye_demon_enemy/eye_demon_enemy.tscn" id="4_8jsg4"]
 
 [node name="EnemyManager" type="Node"]
 script = ExtResource("1_jybml")
 basic_enemy_scene = ExtResource("2_1w3g6")
-wizard_enemy_scene = ExtResource("3_bortd")
-bat_enemy_scene = ExtResource("4_8jsg4")
+hellhound_enemy_scene = ExtResource("3_8jsg4")
+eye_demon_enemy_scene = ExtResource("4_8jsg4")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
