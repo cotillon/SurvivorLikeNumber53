@@ -1,0 +1,36 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://drmm568pres1f"]
+
+[ext_resource type="Texture2D" uid="uid://dhj61inuagnoa" path="res://assets/environment/DungeonCrawl_ProjectUtumnoTileset.png" id="1_7ucsh"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gy8k2"]
+texture = ExtResource("1_7ucsh")
+texture_region_size = Vector2i(32, 32)
+27:19/animation_columns = 9
+27:19/animation_speed = 3.0
+27:19/animation_frame_0/duration = 1.0
+27:19/animation_frame_1/duration = 1.0
+27:19/animation_frame_2/duration = 1.0
+27:19/animation_frame_3/duration = 1.0
+27:19/animation_frame_4/duration = 1.0
+27:19/animation_frame_5/duration = 1.0
+27:19/animation_frame_6/duration = 1.0
+27:19/animation_frame_7/duration = 1.0
+27:19/animation_frame_8/duration = 1.0
+27:19/0 = 0
+27:19/0/terrain_set = 0
+27:19/0/terrain = 0
+27:19/0/terrains_peering_bit/right_side = 0
+27:19/0/terrains_peering_bit/bottom_right_corner = 0
+27:19/0/terrains_peering_bit/bottom_side = 0
+27:19/0/terrains_peering_bit/bottom_left_corner = 0
+27:19/0/terrains_peering_bit/left_side = 0
+27:19/0/terrains_peering_bit/top_left_corner = 0
+27:19/0/terrains_peering_bit/top_side = 0
+27:19/0/terrains_peering_bit/top_right_corner = 0
+
+[resource]
+tile_size = Vector2i(32, 32)
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "water"
+terrain_set_0/terrain_0/color = Color(0.5019608, 1, 0.2509804, 1)
+sources/0 = SubResource("TileSetAtlasSource_gy8k2")

@@ -8,6 +8,8 @@ const MAX_RANGE = 150
 var BASE_DAMAGE = 5
 #base wait time of our timer
 var base_wait_time
+#the number of swords to spawn
+var number_of_attacks = 1
 
 #these should be adjusted based on future upgrades
 var added_flat_damage = 0
@@ -42,21 +44,28 @@ func on_timer_timeout():
 		return a_distance < b_distance
 	)
 
-	#instantiate the sword and place it on the nearest enemy
-	var sword_instance = sword_ability.instantiate() as SwordAbility
-	var foreground_layer = get_tree().get_first_node_in_group("foreground_layer")
-	foreground_layer.add_child(sword_instance)
 
-	#assign our damage to the hitbox's damage component
-	sword_instance.hitbox_component.damage = calculate_damage()
+	# TEST CODE TEST CODE TEST CODE TEST CODE
+	for attack in number_of_attacks:
+	# TEST CODE TEST CODE TEST CODE TEST CODE
 
-	#spawn the sword on the enemy position, then offset it by 4 pixels
-	sword_instance.global_position = enemies[0].global_position
-	sword_instance.global_position += Vector2.RIGHT.rotated(randf_range(0, TAU)) * 4
+		#instantiate the sword and place it on the nearest enemy
+		var sword_instance = sword_ability.instantiate() as SwordAbility
+		var foreground_layer = get_tree().get_first_node_in_group("foreground_layer")
+		foreground_layer.add_child(sword_instance)
 
-	#rotate the sword to face the enemy
-	var enemy_direction = enemies[0].global_position - sword_instance.global_position
-	sword_instance.rotation = enemy_direction.angle()
+		#assign our damage to the hitbox's damage component
+		sword_instance.hitbox_component.damage = calculate_damage()
+
+	# TEST CODE TEST CODE TEST CODE TEST CODE
+		if (enemies.size() - 1) >= attack:
+			#spawn the sword on the enemy position, then offset it by 4 pixels
+			sword_instance.global_position = enemies[attack].global_position
+			sword_instance.global_position += Vector2.RIGHT.rotated(randf_range(0, TAU)) * 4
+
+			#rotate the sword to face the enemy
+			var enemy_direction = enemies[attack].global_position - sword_instance.global_position
+			sword_instance.rotation = enemy_direction.angle()
 
 
 #applies our damage scaling formula and returns the result
