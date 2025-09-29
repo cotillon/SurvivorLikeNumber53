@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://dg3si4u846sg8"]
+[gd_scene load_steps=10 format=3 uid="uid://dg3si4u846sg8"]
 
+[ext_resource type="Theme" uid="uid://dhpcgj6w87k35" path="res://resources/theme/theme2.tres" id="1_j8h27"]
 [ext_resource type="Script" uid="uid://bgbw1ugycs13f" path="res://scenes/ui/meta_upgrade_card.gd" id="1_l878e"]
 [ext_resource type="PackedScene" uid="uid://ce8dho20tqb1o" path="res://scenes/component/random_stream_player_component.tscn" id="2_j8h27"]
 [ext_resource type="AudioStream" uid="uid://c3cklor37j63a" path="res://assets/audio/click1.ogg" id="4_f8fol"]
@@ -108,6 +109,7 @@ custom_minimum_size = Vector2(170, 0)
 offset_right = 150.0
 offset_bottom = 156.0
 pivot_offset = Vector2(75, 75)
+theme = ExtResource("1_j8h27")
 script = ExtResource("1_l878e")
 
 [node name="ClickPlayerComponent" parent="." instance=ExtResource("2_j8h27")]

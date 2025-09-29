@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://7fb05ymweea7"]
+[gd_scene load_steps=6 format=4 uid="uid://7fb05ymweea7"]
 
 [ext_resource type="Script" uid="uid://272yh4g8pm21" path="res://scenes/ui/main_menu.gd" id="1_1g8jr"]
 [ext_resource type="PackedScene" uid="uid://dqhxxnrjcifuh" path="res://scenes/ui/sound_button.tscn" id="2_1g8jr"]
 [ext_resource type="PackedScene" uid="uid://ccuyslf7wkr3s" path="res://scenes/ui/vignette.tscn" id="2_m1kxf"]
 [ext_resource type="TileSet" uid="uid://bojq5vc4o07pf" path="res://resources/tilesets/updated_arena_tileset.tres" id="2_x2yvf"]
+[ext_resource type="Theme" uid="uid://dhpcgj6w87k35" path="res://resources/theme/theme2.tres" id="3_x2yvf"]
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_1g8jr")
@@ -25,6 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_x2yvf")
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
 layout_mode = 2

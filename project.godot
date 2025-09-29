@@ -15,10 +15,10 @@ run/main_scene="uid://7fb05ymweea7"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="SurvivorsTut"
 config/features=PackedStringArray("4.5", "Forward Plus")
-boot_splash/bg_color=Color(0.24705882, 0.14901961, 0.19215687, 1)
+boot_splash/bg_color=Color(0.5058824, 0.03529412, 0.21176471, 1)
+boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
-boot_splash/image="uid://cediqtfyvk0uo"
 config/icon="uid://cediqtfyvk0uo"
 config/windows_native_icon="res://icon.ico"
 

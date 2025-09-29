@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://dwnm41j1f1d5p"]
+[gd_scene load_steps=14 format=3 uid="uid://dwnm41j1f1d5p"]
 
 [ext_resource type="Script" uid="uid://ddsyj2bs5hdew" path="res://scenes/ui/ability_upgrade_card.gd" id="1_8ur3e"]
+[ext_resource type="Theme" uid="uid://dhpcgj6w87k35" path="res://resources/theme/theme2.tres" id="1_rxqlh"]
 [ext_resource type="PackedScene" uid="uid://ce8dho20tqb1o" path="res://scenes/component/random_stream_player_component.tscn" id="2_xicjk"]
 [ext_resource type="AudioStream" uid="uid://bm5u11ncnablr" path="res://assets/audio/impactGeneric_light_002.ogg" id="3_g40w5"]
 [ext_resource type="AudioStream" uid="uid://c3cklor37j63a" path="res://assets/audio/click1.ogg" id="4_uhqci"]
@@ -198,6 +199,8 @@ custom_minimum_size = Vector2(150, 150)
 offset_right = 150.0
 offset_bottom = 156.0
 pivot_offset = Vector2(75, 75)
+theme = ExtResource("1_rxqlh")
+theme_type_variation = &"AlternatePanelContainer"
 script = ExtResource("1_8ur3e")
 
 [node name="HoverPlayerComponent" parent="." instance=ExtResource("2_xicjk")]
@@ -234,7 +237,6 @@ theme_override_constants/separation = 12
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 mouse_filter = 2
-theme_type_variation = &"AlternatePanelContainer"
 
 [node name="NameLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer"]
 unique_name_in_owner = true

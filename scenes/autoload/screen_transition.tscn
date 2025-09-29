@@ -4,6 +4,33 @@
 [ext_resource type="Script" uid="uid://c4v5h20mmp80m" path="res://scenes/autoload/screen_transition.gd" id="1_hctam"]
 [ext_resource type="Texture2D" uid="uid://b0gxk8tqp1hr7" path="res://assets/ui/screen_transition.png" id="2_q8s3n"]
 
+[sub_resource type="Animation" id="Animation_hctam"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/percent")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5750000273125]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_q8s3n"]
 resource_name = "default"
 length = 0.4
@@ -47,33 +74,6 @@ tracks/2/keys = {
 "values": [false, true]
 }
 
-[sub_resource type="Animation" id="Animation_hctam"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:material:shader_parameter/percent")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.5750000273125]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pg7gk"]
 _data = {
 &"RESET": SubResource("Animation_hctam"),
@@ -82,7 +82,7 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q8s3n"]
 shader = ExtResource("1_0u5r8")
-shader_parameter/transition_color = Color(0.24705882, 0.14901961, 0.19215687, 1)
+shader_parameter/transition_color = Color(0.31742424, 0.003586842, 0.028009798, 1)
 shader_parameter/transition_texture = ExtResource("2_q8s3n")
 shader_parameter/percent = 0.5750000273125
 
