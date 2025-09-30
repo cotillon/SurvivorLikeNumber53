@@ -99,7 +99,7 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_oxhc3"]
 resource_local_to_scene = true
 shader = SubResource("Shader_qiub7")
-shader_parameter/color = Color(0.39384356, 0.7663067, 0.09973637, 1)
+shader_parameter/color = Color(0.39215687, 0.7647059, 0.09803922, 1)
 shader_parameter/width = 1.0000000475
 shader_parameter/pattern = 0
 shader_parameter/inside = false

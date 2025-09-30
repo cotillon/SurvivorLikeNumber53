@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://drl4osip477cb"]
+
+[ext_resource type="Texture2D" uid="uid://hrpjfuxwldx1" path="res://scenes/ability/aura_ability/846.png" id="1_valyq"]
+[ext_resource type="Script" uid="uid://brdxl4ox2m6ya" path="res://scenes/ability/aura_ability/aura_ability.gd" id="1_xxwjy"]
+[ext_resource type="PackedScene" uid="uid://cq0v16jkgprc1" path="res://scenes/component/hitbox_component.tscn" id="3_hc424"]
+
+[sub_resource type="Animation" id="Animation_y5hq3"]
+resource_name = "pulse"
+length = 1.5
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AuraSize/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6, 0.75, 0.9, 1.05, 1.2, 1.35, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_xxwjy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AuraSize/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hc424"]
+_data = {
+&"RESET": SubResource("Animation_xxwjy"),
+&"pulse": SubResource("Animation_y5hq3")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hh2sa"]
+radius = 25.0
+
+[node name="AuraAbility" type="Node2D"]
+script = ExtResource("1_xxwjy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_hc424")
+}
+autoplay = "pulse"
+
+[node name="AuraSize" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="AuraSize"]
+texture = ExtResource("1_valyq")
+hframes = 11
+frame = 2
+region_enabled = true
+region_rect = Rect2(0, 193, 704, 60)
+
+[node name="HitboxComponent" parent="AuraSize" instance=ExtResource("3_hc424")]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AuraSize/HitboxComponent"]
+shape = SubResource("CircleShape2D_hh2sa")

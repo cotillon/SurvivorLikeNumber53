@@ -8,12 +8,15 @@ extends Node
 var current_upgrades = {}
 var upgrade_pool: WeightedTable = WeightedTable.new()
 
+#surely there is a better way to do this
 var upgrade_axe = preload("res://resources/upgrades/axe.tres")
 var upgrade_axe_damage = preload("res://resources/upgrades/axe_damage.tres")
 var upgrade_axe_rate = preload("res://resources/upgrades/axe_rate.tres")
 var upgrade_sword_rate = preload("res://resources/upgrades/sword_rate.tres")
 var upgrade_sword_damage = preload("res://resources/upgrades/sword_damage.tres")
+var upgrade_sword_amount = preload("res://resources/upgrades/sword_amount.tres")
 var upgrade_player_speed = preload("res://resources/upgrades/player_speed.tres")
+var upgrade_aura = preload("res://resources/upgrades/aura.tres")
 
 
 func _ready() -> void:
@@ -21,7 +24,9 @@ func _ready() -> void:
 	upgrade_pool.add_item(upgrade_axe, 10)
 	upgrade_pool.add_item(upgrade_sword_rate, 10)
 	upgrade_pool.add_item(upgrade_sword_damage, 10)
+	upgrade_pool.add_item(upgrade_sword_amount, 5)
 	upgrade_pool.add_item(upgrade_player_speed, 5)
+	upgrade_pool.add_item(upgrade_aura, 1000)
 
 
 	experience_manager.level_up.connect(on_level_up)

@@ -42,6 +42,10 @@ window/size/window_height_override=768
 window/stretch/mode="viewport"
 window/size/mode.debug=0
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/animation-key-helper/plugin.cfg")
+
 [global_group]
 
 player="houses only the player"

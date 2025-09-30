@@ -76,9 +76,13 @@ func calculate_damage() -> float:
 
 #listen for the game event upgrade added, then filter for the sword upgrade
 func on_ability_upgrade_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary):
-	if upgrade.id == "sword_rate":
-		var percent_reduction = current_upgrades["sword_rate"]["quantity"] * .1
-		$Timer.wait_time = base_wait_time * (1 - percent_reduction)
-		$Timer.start()
-	elif upgrade.id == "sword_damage":
-		damage_percent_increase = 1 + (current_upgrades["sword_damage"]["quantity"] * .15)
+
+	match upgrade.id:
+		"sword_rate":
+			var percent_reduction = current_upgrades["sword_rate"]["quantity"] * .1
+			$Timer.wait_time = base_wait_time * (1 - percent_reduction)
+			$Timer.start()
+		"sword_damage":
+			damage_percent_increase = 1 + (current_upgrades["sword_damage"]["quantity"] * .15)
+		"sword_amount":
+			number_of_attacks += 1

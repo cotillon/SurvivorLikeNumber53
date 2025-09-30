@@ -32,6 +32,7 @@ func tween_collect(percent: float, start_position: Vector2):
 
 func collect():
 	GameEvents.emit_experience_vial_collected(experience_tier)
+	$RandomSteamPlayer2DComponent.play_random()
 	queue_free()
 
 
@@ -58,6 +59,3 @@ func on_area_entered(other_area: Area2D):
 
 	tween.chain()
 	tween.tween_callback(collect)
-
-	await tween.finished
-	$RandomSteamPlayer2DComponent.play_random()
