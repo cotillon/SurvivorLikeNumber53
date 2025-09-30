@@ -1,7 +1,17 @@
 extends Node2D
 
 @onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: Sprite2D = $%Sprite2D
+var experience_type_visual: Array[Texture2D] = []
+
+var experience_tier: int = 1
+
+
+func _init() -> void:
+	experience_type_visual.append(load("res://scenes/game_object/experience_vial/experience_small.png"))
+	experience_type_visual.append(load("res://scenes/game_object/experience_vial/experience_medium.png"))
+	experience_type_visual.append(load("res://scenes/game_object/experience_vial/experience_large.png"))
+
 
 
 func _ready() -> void:
@@ -21,8 +31,13 @@ func tween_collect(percent: float, start_position: Vector2):
 
 
 func collect():
-	GameEvents.emit_experience_vial_collected(1)
+	GameEvents.emit_experience_vial_collected(experience_tier)
 	queue_free()
+
+
+func set_tier(tier:int):
+	sprite.texture = experience_type_visual[tier]
+	experience_tier = tier + 1
 
 
 func disable_collision():
@@ -44,4 +59,5 @@ func on_area_entered(other_area: Area2D):
 	tween.chain()
 	tween.tween_callback(collect)
 
+	await tween.finished
 	$RandomSteamPlayer2DComponent.play_random()
