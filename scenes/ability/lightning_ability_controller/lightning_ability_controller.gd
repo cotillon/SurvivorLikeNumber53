@@ -1,16 +1,18 @@
 extends Node
 
-const MAX_RANGE = 150
+const MAX_RANGE = 250
 
 @export var lightning_ability: PackedScene
 @onready var player = get_tree().get_first_node_in_group("player") as Node2D
 
 #the base damage of our ability
-var base_damage = 10
+var base_damage = 5
 #base wait time of our timer
 var base_wait_time
 #aura size
 var base_radius_percent := 1.0
+#number of attacks to spawn
+var number_of_attacks := 3
 
 #these should be adjusted based on future upgrades
 var added_flat_damage = 0
@@ -40,40 +42,31 @@ func on_timer_timeout():
 	if enemies.size() == 0:
 		return
 
-	#sort the array based on distance to player
-	enemies.sort_custom(func (a: Node2D, b: Node2D):
-		var a_distance = a.global_position.distance_squared_to(player.global_position)
-		var b_distance = b.global_position.distance_squared_to(player.global_position)
-		return a_distance < b_distance
-	)
-
-
 	# TEST CODE TEST CODE TEST CODE TEST CODE
 	for attack in number_of_attacks:
 	# TEST CODE TEST CODE TEST CODE TEST CODE
 
 		#instantiate the sword and place it on the nearest enemy
-		var sword_instance = sword_ability.instantiate() as SwordAbility
+		lightning_instance = lightning_ability.instantiate() as LightningAbility
 		var foreground_layer = get_tree().get_first_node_in_group("foreground_layer")
-		foreground_layer.add_child(sword_instance)
+		foreground_layer.add_child(lightning_instance)
 
 		#assign our damage to the hitbox's damage component
-		sword_instance.hitbox_component.damage = calculate_damage()
+		lightning_instance.hitbox_component.damage = calculate_damage()
 
 	# TEST CODE TEST CODE TEST CODE TEST CODE
 		if (enemies.size() - 1) >= attack:
-			#spawn the sword on the enemy position, then offset it by 4 pixels
-			sword_instance.global_position = enemies[attack].global_position
-			sword_instance.global_position += Vector2.RIGHT.rotated(randf_range(0, TAU)) * 4
+			#spawn the sword on the enemy position
+			lightning_instance.global_position = enemies[attack].global_position
 
 			#rotate the sword to face the enemy
-			var enemy_direction = enemies[attack].global_position - sword_instance.global_position
-			sword_instance.rotation = enemy_direction.angle()
+			#var enemy_direction = enemies[attack].global_position - lightning_instance.global_position
+			#lightning_instance.rotation = enemy_direction.angle()
 
 
 #applies our damage scaling formula and returns the result
 func calculate_damage() -> float:
-	var total_damage = (BASE_DAMAGE + added_flat_damage) * damage_percent_increase
+	var total_damage = (base_damage + added_flat_damage) * damage_percent_increase
 	return total_damage
 
 
@@ -81,11 +74,11 @@ func calculate_damage() -> float:
 func on_ability_upgrade_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary):
 
 	match upgrade.id:
-		"sword_rate":
-			var percent_reduction = current_upgrades["sword_rate"]["quantity"] * .1
+		"lightning_rate":
+			var percent_reduction = current_upgrades["lightning_rate"]["quantity"] * .15
 			$Timer.wait_time = base_wait_time * (1 - percent_reduction)
 			$Timer.start()
-		"sword_damage":
-			damage_percent_increase = 1 + (current_upgrades["sword_damage"]["quantity"] * .15)
-		"sword_amount":
-			number_of_attacks += 1
+		"lightning_damage":
+			damage_percent_increase = 1 + (current_upgrades["lightning_damage"]["quantity"] * .15)
+		"lightning_amount":
+			number_of_attacks += 2

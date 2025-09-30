@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://druxyt4i6lrdq"]
+
+[ext_resource type="Script" uid="uid://dbg3lgmqkum40" path="res://resources/upgrades/ability_upgrade.gd" id="1_qdluo"]
+
+[resource]
+script = ExtResource("1_qdluo")
+id = "lightning_damage"
+name = "Lightning damage"
+description = "Increases lightning attack damage by 15%"

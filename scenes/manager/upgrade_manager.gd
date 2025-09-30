@@ -13,6 +13,7 @@ var upgrade_pool: WeightedTable = WeightedTable.new()
 #base skills
 var upgrade_axe = preload("res://resources/upgrades/axe.tres")
 var upgrade_aura = preload("res://resources/upgrades/aura.tres")
+var upgrade_lightning = preload("res://resources/upgrades/lightning.tres")
 
 #skill upgrades
 var upgrade_axe_damage = preload("res://resources/upgrades/axe_damage.tres")
@@ -24,6 +25,9 @@ var upgrade_aura_rate = preload("res://resources/upgrades/aura_rate.tres")
 var upgrade_aura_damage = preload("res://resources/upgrades/aura_damage.tres")
 var upgrade_aura_base_damage = preload("res://resources/upgrades/aura_base_damage.tres")
 var upgrade_aura_size = preload("res://resources/upgrades/aura_size.tres")
+var upgrade_lightning_rate = preload("res://resources/upgrades/lightning_rate.tres")
+var upgrade_lightning_damage = preload("res://resources/upgrades/lightning_damage.tres")
+var upgrade_lightning_amount = preload("res://resources/upgrades/lightning_amount.tres")
 
 #player upgrades
 var upgrade_player_speed = preload("res://resources/upgrades/player_speed.tres")
@@ -31,9 +35,12 @@ var upgrade_player_speed = preload("res://resources/upgrades/player_speed.tres")
 
 
 func _ready() -> void:
-
+	#weapons
 	upgrade_pool.add_item(upgrade_axe, 10)
 	upgrade_pool.add_item(upgrade_aura, 10)
+	upgrade_pool.add_item(upgrade_lightning, 10000)
+
+	#base upgrades with no picked weapons
 	upgrade_pool.add_item(upgrade_sword_rate, 10)
 	upgrade_pool.add_item(upgrade_sword_damage, 10)
 	upgrade_pool.add_item(upgrade_sword_amount, 5)
@@ -65,14 +72,20 @@ func apply_upgrade(upgrade: AbilityUpgrade):
 
 #use this function to determine when to allow certain upgrades to appear
 func update_upgrade_pool(chosen_upgrade: AbilityUpgrade):
-	if chosen_upgrade.id == upgrade_axe.id:
-		upgrade_pool.add_item(upgrade_axe_damage, 10)
-		upgrade_pool.add_item(upgrade_axe_rate, 10)
-	if chosen_upgrade.id == upgrade_aura.id:
-		upgrade_pool.add_item(upgrade_aura_damage, 10)
-		upgrade_pool.add_item(upgrade_aura_rate, 10)
-		upgrade_pool.add_item(upgrade_aura_size, 10)
-		upgrade_pool.add_item(upgrade_aura_base_damage, 10)
+
+	match chosen_upgrade.id:
+		upgrade_axe.id:
+			upgrade_pool.add_item(upgrade_axe_damage, 10)
+			upgrade_pool.add_item(upgrade_axe_rate, 10)
+		upgrade_aura.id:
+			upgrade_pool.add_item(upgrade_aura_damage, 10)
+			upgrade_pool.add_item(upgrade_aura_rate, 10)
+			upgrade_pool.add_item(upgrade_aura_size, 10)
+			upgrade_pool.add_item(upgrade_aura_base_damage, 10)
+		upgrade_lightning.id:
+			upgrade_pool.add_item(upgrade_lightning_damage, 10)
+			upgrade_pool.add_item(upgrade_lightning_rate, 10)
+			upgrade_pool.add_item(upgrade_lightning_amount, 5)
 
 
 func pick_upgrades():

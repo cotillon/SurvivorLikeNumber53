@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://dk7xt0144tcpb"]
+
+[ext_resource type="Script" uid="uid://dbg3lgmqkum40" path="res://resources/upgrades/ability_upgrade.gd" id="1_3mc7m"]
+
+[resource]
+script = ExtResource("1_3mc7m")
+id = "lightning_amount"
+max_quantity = 10
+name = "Lightning Amount"
+description = "Increases the amount of lightning strikes by 2"
