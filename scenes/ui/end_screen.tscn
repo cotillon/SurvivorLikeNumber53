@@ -1,9 +1,9 @@
 [gd_scene load_steps=10 format=3 uid="uid://ckbb5it5mw0ul"]
 
 [ext_resource type="Script" uid="uid://bpnhe1e68nriv" path="res://scenes/ui/end_screen.gd" id="1_4ttpn"]
-[ext_resource type="AudioStream" uid="uid://cojakjsjgwio3" path="res://assets/audio/jingles_victory.ogg" id="2_53v5j"]
+[ext_resource type="AudioStream" uid="uid://cojakjsjgwio3" path="res://assets/audio/sfx/jingles_victory.ogg" id="2_53v5j"]
 [ext_resource type="PackedScene" uid="uid://dqhxxnrjcifuh" path="res://scenes/ui/sound_button.tscn" id="2_n8r4t"]
-[ext_resource type="AudioStream" uid="uid://n3do7s808o" path="res://assets/audio/jingles_defeat.ogg" id="3_e4cmn"]
+[ext_resource type="AudioStream" uid="uid://em0ugbcmtmg" path="res://assets/audio/sfx/cinematic-hit-159487.mp3" id="3_e4cmn"]
 [ext_resource type="Theme" uid="uid://dhpcgj6w87k35" path="res://resources/theme/theme2.tres" id="4_e4cmn"]
 
 [sub_resource type="Animation" id="Animation_bd1lb"]
@@ -79,7 +79,7 @@ bus = &"sfx"
 
 [node name="DefeatStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_e4cmn")
-volume_db = -12.364
+volume_db = -15.008
 bus = &"sfx"
 
 [node name="ColorRect" type="ColorRect" parent="."]

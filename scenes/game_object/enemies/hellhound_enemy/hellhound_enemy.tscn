@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bv8cieg0i3sm1"]
+[gd_scene load_steps=19 format=3 uid="uid://bv8cieg0i3sm1"]
 
 [ext_resource type="Script" uid="uid://v4x84jlmt5p3" path="res://scenes/game_object/enemies/hellhound_enemy/hellhound_enemy.gd" id="1_2yrd7"]
 [ext_resource type="PackedScene" uid="uid://c8d1r2d4gad0n" path="res://scenes/component/health_component.tscn" id="2_8shjb"]
@@ -8,8 +8,7 @@
 [ext_resource type="Shader" uid="uid://m2j74wjmolvt" path="res://scenes/component/hit_flash_component.gdshader" id="6_3lxf3"]
 [ext_resource type="PackedScene" uid="uid://hw5nwxrd13jo" path="res://scenes/component/death_component.tscn" id="7_g8vq4"]
 [ext_resource type="PackedScene" uid="uid://cnwkwdlt8fb8d" path="res://scenes/component/random_steam_player_2d_component.tscn" id="8_h0lmr"]
-[ext_resource type="AudioStream" uid="uid://bwn81rsdbgxda" path="res://assets/audio/footstep_carpet_000.ogg" id="9_k0amj"]
-[ext_resource type="AudioStream" uid="uid://dc5k2hutswyu0" path="res://assets/audio/footstep_carpet_004.ogg" id="10_8gl4t"]
+[ext_resource type="AudioStream" uid="uid://i41j44gkr23w" path="res://assets/audio/sfx/hitmarker-sound-effect-sound.mp3" id="9_hma70"]
 [ext_resource type="PackedScene" uid="uid://bvj8luodgb64u" path="res://scenes/component/hurtbox_component.tscn" id="11_27mtv"]
 [ext_resource type="Texture2D" uid="uid://dodrlminndq5p" path="res://scenes/game_object/enemies/hellhound_enemy/hell-hound-walk.png" id="12_2yrd7"]
 
@@ -114,7 +113,7 @@ drop_percent = 1.0
 health_component = NodePath("../HealthComponent")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("4_8efe1")]
-max_speed = 60
+max_speed = 70
 acceleration = 10.0
 
 [node name="HitFlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("5_3dxx2")]
@@ -128,7 +127,7 @@ sprite = NodePath("../Visuals/Sprite2D")
 
 [node name="HitRandomAudioPlayerComponent" parent="." instance=ExtResource("8_h0lmr")]
 volume_db = -8.727
-streams = Array[AudioStream]([ExtResource("9_k0amj"), ExtResource("10_8gl4t")])
+streams = Array[AudioStream]([ExtResource("9_hma70")])
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("11_27mtv")]
 visible = false

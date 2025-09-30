@@ -3,8 +3,8 @@
 [ext_resource type="Script" uid="uid://ddsyj2bs5hdew" path="res://scenes/ui/ability_upgrade_card.gd" id="1_8ur3e"]
 [ext_resource type="Theme" uid="uid://dhpcgj6w87k35" path="res://resources/theme/theme2.tres" id="1_rxqlh"]
 [ext_resource type="PackedScene" uid="uid://ce8dho20tqb1o" path="res://scenes/component/random_stream_player_component.tscn" id="2_xicjk"]
-[ext_resource type="AudioStream" uid="uid://bm5u11ncnablr" path="res://assets/audio/impactGeneric_light_002.ogg" id="3_g40w5"]
-[ext_resource type="AudioStream" uid="uid://c3cklor37j63a" path="res://assets/audio/click1.ogg" id="4_uhqci"]
+[ext_resource type="AudioStream" uid="uid://bm5u11ncnablr" path="res://assets/audio/sfx/impactGeneric_light_002.ogg" id="3_g40w5"]
+[ext_resource type="AudioStream" uid="uid://c3cklor37j63a" path="res://assets/audio/sfx/click1.ogg" id="4_uhqci"]
 
 [sub_resource type="Animation" id="Animation_m44y0"]
 length = 0.001

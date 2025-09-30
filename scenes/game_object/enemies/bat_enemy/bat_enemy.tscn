@@ -8,8 +8,8 @@
 [ext_resource type="Shader" uid="uid://m2j74wjmolvt" path="res://scenes/component/hit_flash_component.gdshader" id="6_7dhkb"]
 [ext_resource type="PackedScene" uid="uid://hw5nwxrd13jo" path="res://scenes/component/death_component.tscn" id="7_qotau"]
 [ext_resource type="PackedScene" uid="uid://cnwkwdlt8fb8d" path="res://scenes/component/random_steam_player_2d_component.tscn" id="8_o78pq"]
-[ext_resource type="AudioStream" uid="uid://bwn81rsdbgxda" path="res://assets/audio/footstep_carpet_000.ogg" id="9_oykjd"]
-[ext_resource type="AudioStream" uid="uid://dc5k2hutswyu0" path="res://assets/audio/footstep_carpet_004.ogg" id="10_kt65b"]
+[ext_resource type="AudioStream" uid="uid://bwn81rsdbgxda" path="res://assets/audio/sfx/footstep_carpet_000.ogg" id="9_oykjd"]
+[ext_resource type="AudioStream" uid="uid://dc5k2hutswyu0" path="res://assets/audio/sfx/footstep_carpet_004.ogg" id="10_kt65b"]
 [ext_resource type="PackedScene" uid="uid://bvj8luodgb64u" path="res://scenes/component/hurtbox_component.tscn" id="11_676dg"]
 [ext_resource type="Texture2D" uid="uid://cqfss3uirh6ae" path="res://scenes/game_object/enemies/bat_enemy/bat.png" id="12_qjqcj"]
 

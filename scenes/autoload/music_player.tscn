@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d32d6owd6alf"]
 
-[ext_resource type="AudioStream" uid="uid://nkk60np8gae0" path="res://assets/audio/Cruising for Goblins.mp3" id="1_xlf3v"]
+[ext_resource type="AudioStream" uid="uid://nkk60np8gae0" path="res://assets/audio/music/Cruising for Goblins.mp3" id="1_xlf3v"]
 [ext_resource type="Script" uid="uid://co72f17ma4a4x" path="res://scenes/autoload/music_player.gd" id="2_pr75j"]
 
 [node name="MusicPlayer" type="AudioStreamPlayer"]

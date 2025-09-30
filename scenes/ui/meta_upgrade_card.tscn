@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://dhpcgj6w87k35" path="res://resources/theme/theme2.tres" id="1_j8h27"]
 [ext_resource type="Script" uid="uid://bgbw1ugycs13f" path="res://scenes/ui/meta_upgrade_card.gd" id="1_l878e"]
 [ext_resource type="PackedScene" uid="uid://ce8dho20tqb1o" path="res://scenes/component/random_stream_player_component.tscn" id="2_j8h27"]
-[ext_resource type="AudioStream" uid="uid://c3cklor37j63a" path="res://assets/audio/click1.ogg" id="4_f8fol"]
+[ext_resource type="AudioStream" uid="uid://c3cklor37j63a" path="res://assets/audio/sfx/click1.ogg" id="4_f8fol"]
 [ext_resource type="Texture2D" uid="uid://cx5s0fb2os84p" path="res://scenes/game_object/experience_vial/experience_vial.png" id="5_j8h27"]
 
 [sub_resource type="Animation" id="Animation_m44y0"]
@@ -152,6 +152,7 @@ autowrap_mode = 2
 [node name="DescriptionLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_vertical = 3
 theme_type_variation = &"BlueOutlineLabel"
 text = "Congrats, you found a bug! Proud of yourself?"
 horizontal_alignment = 1

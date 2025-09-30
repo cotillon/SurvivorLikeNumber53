@@ -3,7 +3,6 @@ extends Node
 signal experience_updated(current_experience: float, target_experience: float)
 signal level_up(new_level: int)
 
-
 #how much more experience we need per level
 const TARGET_EXPERIENCE_GROWTH = 5
 

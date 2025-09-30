@@ -29,7 +29,6 @@ func disable_collision():
 	collision_shape_2d.disabled = true
 
 
-
 func on_area_entered(other_area: Area2D):
 
 	#disable the collision on an idle frame to avoid physics callback issues

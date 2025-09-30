@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dy30jfnobxw61"]
+[gd_scene load_steps=7 format=3 uid="uid://dy30jfnobxw61"]
 
 [ext_resource type="Script" uid="uid://fg7agvj2cvhd" path="res://scenes/ui/pause_menu.gd" id="1_0lmf7"]
+[ext_resource type="Theme" uid="uid://dhpcgj6w87k35" path="res://resources/theme/theme2.tres" id="2_f6eus"]
 [ext_resource type="PackedScene" uid="uid://dqhxxnrjcifuh" path="res://scenes/ui/sound_button.tscn" id="3_4inpj"]
 
 [sub_resource type="Animation" id="Animation_f6eus"]
@@ -71,6 +72,7 @@ custom_minimum_size = Vector2(180, 140)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme = ExtResource("2_f6eus")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
 layout_mode = 2
