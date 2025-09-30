@@ -61,6 +61,7 @@ entities_layer=""
 foreground_layer=""
 upgrade_card=""
 meta_upgrade_card=""
+enemies_layer="contains enemies in our main scene tree"
 
 [gui]
 

@@ -57,4 +57,7 @@ y_sort_enabled = true
 unique_name_in_owner = true
 position = Vector2(422, 318)
 
+[node name="Enemies" type="Node2D" parent="." groups=["enemies_layer"]]
+y_sort_enabled = true
+
 [node name="Foreground" type="Node2D" parent="." groups=["foreground_layer"]]

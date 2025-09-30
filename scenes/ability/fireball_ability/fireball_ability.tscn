@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://c5p83fcq2n1lg"]
+
+[ext_resource type="Texture2D" uid="uid://dnx7sir2mxh0d" path="res://scenes/ability/fireball_ability/fire-ball.png" id="1_6u37w"]
+[ext_resource type="PackedScene" uid="uid://cq0v16jkgprc1" path="res://scenes/component/hitbox_component.tscn" id="2_3ilnd"]
+
+[sub_resource type="Animation" id="Animation_nocjj"]
+resource_name = "default"
+length = 0.45
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FireballSize/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_x5i84"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FireballSize/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h1cld"]
+_data = {
+&"RESET": SubResource("Animation_x5i84"),
+&"default": SubResource("Animation_nocjj")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_htv1r"]
+
+[node name="FireballAbility" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_h1cld")
+}
+autoplay = "default"
+
+[node name="FireballSize" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="FireballSize"]
+texture = ExtResource("1_6u37w")
+offset = Vector2(-7, 0)
+hframes = 3
+
+[node name="HitboxComponent" parent="FireballSize" instance=ExtResource("2_3ilnd")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FireballSize/HitboxComponent"]
+shape = SubResource("CircleShape2D_htv1r")

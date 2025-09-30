@@ -12,7 +12,7 @@ var base_wait_time
 #aura size
 var base_radius_percent := 1.0
 #number of attacks to spawn
-var number_of_attacks := 3
+var number_of_attacks := 1
 
 #these should be adjusted based on future upgrades
 var added_flat_damage = 0
@@ -36,8 +36,8 @@ func on_timer_timeout():
 	#get an array of the enemies, then filter out based on our MAX_RANGE
 	var enemies = get_tree().get_nodes_in_group("enemies")
 	enemies = enemies.filter(func(enemy: Node2D):
-		return enemy.global_position.distance_squared_to(player.global_position) < pow(MAX_RANGE, 2)
-	)
+		return enemy.global_position.distance_squared_to(player.global_position) < pow(MAX_RANGE, 2))
+
 	#no enemies in range? do nothing
 	if enemies.size() == 0:
 		return
@@ -81,4 +81,4 @@ func on_ability_upgrade_added(upgrade: AbilityUpgrade, current_upgrades: Diction
 		"lightning_damage":
 			damage_percent_increase = 1 + (current_upgrades["lightning_damage"]["quantity"] * .15)
 		"lightning_amount":
-			number_of_attacks += 2
+			number_of_attacks = (number_of_attacks*2)

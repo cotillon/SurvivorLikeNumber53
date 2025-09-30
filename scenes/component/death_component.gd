@@ -1,9 +1,7 @@
 extends Node2D
 
-
 @export var health_component: Node
 @export var sprite: Sprite2D
-
 
 func _ready() -> void:
 	$GPUParticles2D.texture = sprite.texture
@@ -22,3 +20,5 @@ func on_died():
 	global_position = spawn_position
 	#$AnimationPlayer.play("default")
 	$HitRandomAudioPlayerComponent.play_random()
+	await $HitRandomAudioPlayerComponent.finished
+	Callable(queue_free).call_deferred()

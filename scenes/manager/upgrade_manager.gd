@@ -85,7 +85,7 @@ func update_upgrade_pool(chosen_upgrade: AbilityUpgrade):
 		upgrade_lightning.id:
 			upgrade_pool.add_item(upgrade_lightning_damage, 10)
 			upgrade_pool.add_item(upgrade_lightning_rate, 10)
-			upgrade_pool.add_item(upgrade_lightning_amount, 5)
+			upgrade_pool.add_item(upgrade_lightning_amount, 500)
 
 
 func pick_upgrades():

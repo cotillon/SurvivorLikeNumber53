@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cfnv3dcnwhw5t"]
+
+[node name="FireballAbilityController" type="Node"]
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
