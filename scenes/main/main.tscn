@@ -39,6 +39,7 @@ arena_time_manager = NodePath("../ArenaTimeManager")
 [node name="GameCamera" parent="." instance=ExtResource("3_k2fmo")]
 
 [node name="TileMapLayers" type="Node2D" parent="."]
+z_index = -2
 metadata/_edit_lock_ = true
 
 [node name="OutOfBoundsTilemap" parent="TileMapLayers" instance=ExtResource("11_th5th")]

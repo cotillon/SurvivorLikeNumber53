@@ -92,7 +92,7 @@ libraries = {
 autoplay = "move"
 
 [node name="HitRandomAudioPlayerComponent" parent="." instance=ExtResource("10_yyp5f")]
-volume_db = -8.727
+volume_db = -15.0
 streams = Array[AudioStream]([ExtResource("9_us5fo")])
 
 [node name="HurtboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("4_elloc")]

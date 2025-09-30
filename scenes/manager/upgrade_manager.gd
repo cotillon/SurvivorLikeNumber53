@@ -9,24 +9,35 @@ var current_upgrades = {}
 var upgrade_pool: WeightedTable = WeightedTable.new()
 
 #surely there is a better way to do this
+
+#base skills
 var upgrade_axe = preload("res://resources/upgrades/axe.tres")
+var upgrade_aura = preload("res://resources/upgrades/aura.tres")
+
+#skill upgrades
 var upgrade_axe_damage = preload("res://resources/upgrades/axe_damage.tres")
 var upgrade_axe_rate = preload("res://resources/upgrades/axe_rate.tres")
 var upgrade_sword_rate = preload("res://resources/upgrades/sword_rate.tres")
 var upgrade_sword_damage = preload("res://resources/upgrades/sword_damage.tres")
 var upgrade_sword_amount = preload("res://resources/upgrades/sword_amount.tres")
+var upgrade_aura_rate = preload("res://resources/upgrades/aura_rate.tres")
+var upgrade_aura_damage = preload("res://resources/upgrades/aura_damage.tres")
+var upgrade_aura_base_damage = preload("res://resources/upgrades/aura_base_damage.tres")
+var upgrade_aura_size = preload("res://resources/upgrades/aura_size.tres")
+
+#player upgrades
 var upgrade_player_speed = preload("res://resources/upgrades/player_speed.tres")
-var upgrade_aura = preload("res://resources/upgrades/aura.tres")
+
 
 
 func _ready() -> void:
 
 	upgrade_pool.add_item(upgrade_axe, 10)
+	upgrade_pool.add_item(upgrade_aura, 10)
 	upgrade_pool.add_item(upgrade_sword_rate, 10)
 	upgrade_pool.add_item(upgrade_sword_damage, 10)
 	upgrade_pool.add_item(upgrade_sword_amount, 5)
 	upgrade_pool.add_item(upgrade_player_speed, 5)
-	upgrade_pool.add_item(upgrade_aura, 1000)
 
 
 	experience_manager.level_up.connect(on_level_up)
@@ -57,12 +68,17 @@ func update_upgrade_pool(chosen_upgrade: AbilityUpgrade):
 	if chosen_upgrade.id == upgrade_axe.id:
 		upgrade_pool.add_item(upgrade_axe_damage, 10)
 		upgrade_pool.add_item(upgrade_axe_rate, 10)
+	if chosen_upgrade.id == upgrade_aura.id:
+		upgrade_pool.add_item(upgrade_aura_damage, 10)
+		upgrade_pool.add_item(upgrade_aura_rate, 10)
+		upgrade_pool.add_item(upgrade_aura_size, 10)
+		upgrade_pool.add_item(upgrade_aura_base_damage, 10)
 
 
 func pick_upgrades():
 	var chosen_upgrades_array: Array[AbilityUpgrade] = []
 
-	for i in 2:
+	for i in 3:
 		if upgrade_pool.items.size() == chosen_upgrades_array.size():
 			break
 		var chosen_upgrade = upgrade_pool.pick_item(chosen_upgrades_array)

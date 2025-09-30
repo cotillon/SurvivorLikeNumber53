@@ -13,7 +13,6 @@ func _init() -> void:
 	experience_type_visual.append(load("res://scenes/game_object/experience_vial/experience_large.png"))
 
 
-
 func _ready() -> void:
 	$Area2D.area_entered.connect(on_area_entered)
 
@@ -33,6 +32,7 @@ func tween_collect(percent: float, start_position: Vector2):
 func collect():
 	GameEvents.emit_experience_vial_collected(experience_tier)
 	$RandomSteamPlayer2DComponent.play_random()
+	await $RandomSteamPlayer2DComponent.finished
 	queue_free()
 
 

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://brep6p3sa74cm"]
+
+[ext_resource type="Script" uid="uid://dbg3lgmqkum40" path="res://resources/upgrades/ability_upgrade.gd" id="1_tn8rj"]
+
+[resource]
+script = ExtResource("1_tn8rj")
+id = "aura_damage"
+max_quantity = 10
+name = "Aura Damage"
+description = "Increases aura damage by 25%"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://bsyav6hgot3ow"]
+
+[ext_resource type="Script" uid="uid://dbg3lgmqkum40" path="res://resources/upgrades/ability_upgrade.gd" id="1_b3plu"]
+
+[resource]
+script = ExtResource("1_b3plu")
+id = "aura_rate"
+max_quantity = 5
+name = "Aura Tick Speed"
+description = "Increases aura tick rate by 25%"

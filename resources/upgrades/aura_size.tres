@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://ch6x5pc1ufw8u"]
+
+[ext_resource type="Script" uid="uid://dbg3lgmqkum40" path="res://resources/upgrades/ability_upgrade.gd" id="1_ko475"]
+
+[resource]
+script = ExtResource("1_ko475")
+id = "aura_size"
+max_quantity = 8
+name = "Aura Size"
+description = "Increases aura base radius by 50%"

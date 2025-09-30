@@ -46,6 +46,13 @@ window/size/mode.debug=0
 
 enabled=PackedStringArray("res://addons/animation-key-helper/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://addons/_Godot-IDE_/plugins": "blue",
+"res://addons/_Godot-IDE_/shared_resources/": "teal"
+}
+
 [global_group]
 
 player="houses only the player"

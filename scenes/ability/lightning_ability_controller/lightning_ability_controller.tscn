@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://clb6x3vmsm8nj"]
+
+[ext_resource type="Script" uid="uid://c64o1ka4khpo5" path="res://scenes/ability/lightning_ability_controller/lightning_ability_controller.gd" id="1_bp0up"]
+
+[node name="LightningAbilityController" type="Node"]
+script = ExtResource("1_bp0up")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
