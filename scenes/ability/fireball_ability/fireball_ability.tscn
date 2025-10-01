@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5p83fcq2n1lg"]
+[gd_scene load_steps=9 format=3 uid="uid://c5p83fcq2n1lg"]
 
+[ext_resource type="Script" uid="uid://dq28bq6u0bslm" path="res://scenes/ability/fireball_ability/fireball_ability.gd" id="1_3ilnd"]
 [ext_resource type="Texture2D" uid="uid://dnx7sir2mxh0d" path="res://scenes/ability/fireball_ability/fire-ball.png" id="1_6u37w"]
 [ext_resource type="PackedScene" uid="uid://cq0v16jkgprc1" path="res://scenes/component/hitbox_component.tscn" id="2_3ilnd"]
+[ext_resource type="PackedScene" uid="uid://cmjp036op6ubi" path="res://scenes/component/velocity_component.tscn" id="4_nocjj"]
 
 [sub_resource type="Animation" id="Animation_nocjj"]
 resource_name = "default"
@@ -44,7 +46,12 @@ _data = {
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_htv1r"]
 
-[node name="FireballAbility" type="Node2D"]
+[node name="FireballAbility" type="CharacterBody2D"]
+script = ExtResource("1_3ilnd")
+
+[node name="VelocityComponent" parent="." instance=ExtResource("4_nocjj")]
+max_speed = 100
+acceleration = 25.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -60,6 +67,8 @@ offset = Vector2(-7, 0)
 hframes = 3
 
 [node name="HitboxComponent" parent="FireballSize" instance=ExtResource("2_3ilnd")]
+unique_name_in_owner = true
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FireballSize/HitboxComponent"]
 shape = SubResource("CircleShape2D_htv1r")
