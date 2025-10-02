@@ -16,11 +16,11 @@ config/use_custom_user_dir=true
 config/custom_user_dir_name="SurvivorsTut"
 config/features=PackedStringArray("4.5", "Forward Plus")
 boot_splash/bg_color=Color(0.5058824, 0.03529412, 0.21176471, 1)
-boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
-config/icon="uid://cediqtfyvk0uo"
-config/windows_native_icon="res://icon.ico"
+boot_splash/image="uid://cbu4ihjvkihrj"
+config/icon="uid://cbu4ihjvkihrj"
+config/windows_native_icon="res://greenrupeeoutline.ico"
 
 [autoload]
 

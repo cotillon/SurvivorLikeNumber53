@@ -14,23 +14,33 @@ var upgrade_pool: WeightedTable = WeightedTable.new()
 var upgrade_axe = preload("res://resources/upgrades/axe.tres")
 var upgrade_aura = preload("res://resources/upgrades/aura.tres")
 var upgrade_lightning = preload("res://resources/upgrades/lightning.tres")
+var upgrade_fireball = preload("res://resources/upgrades/fireball.tres")
 
 #skill upgrades
 var upgrade_axe_damage = preload("res://resources/upgrades/axe_damage.tres")
 var upgrade_axe_rate = preload("res://resources/upgrades/axe_rate.tres")
+
 var upgrade_sword_rate = preload("res://resources/upgrades/sword_rate.tres")
 var upgrade_sword_damage = preload("res://resources/upgrades/sword_damage.tres")
 var upgrade_sword_amount = preload("res://resources/upgrades/sword_amount.tres")
+
 var upgrade_aura_rate = preload("res://resources/upgrades/aura_rate.tres")
 var upgrade_aura_damage = preload("res://resources/upgrades/aura_damage.tres")
 var upgrade_aura_base_damage = preload("res://resources/upgrades/aura_base_damage.tres")
 var upgrade_aura_size = preload("res://resources/upgrades/aura_size.tres")
+
 var upgrade_lightning_rate = preload("res://resources/upgrades/lightning_rate.tres")
 var upgrade_lightning_damage = preload("res://resources/upgrades/lightning_damage.tres")
 var upgrade_lightning_amount = preload("res://resources/upgrades/lightning_amount.tres")
 
+var upgrade_fireball_damage = preload("res://resources/upgrades/fireball_damage.tres")
+var upgrade_fireball_base_damage = preload("res://resources/upgrades/fireball_base_damage.tres") 
+var upgrade_fireball_rate = preload("res://resources/upgrades/fireball_rate.tres")
+var upgrade_fireball_split = preload("res://resources/upgrades/fireball_split.tres")
+
 #player upgrades
 var upgrade_player_speed = preload("res://resources/upgrades/player_speed.tres")
+
 
 
 
@@ -39,6 +49,8 @@ func _ready() -> void:
 	upgrade_pool.add_item(upgrade_axe, 10)
 	upgrade_pool.add_item(upgrade_aura, 10)
 	upgrade_pool.add_item(upgrade_lightning, 10)
+	upgrade_pool.add_item(upgrade_fireball, 10000)
+
 
 	#base upgrades with no picked weapons
 	upgrade_pool.add_item(upgrade_sword_rate, 10)
@@ -86,6 +98,12 @@ func update_upgrade_pool(chosen_upgrade: AbilityUpgrade):
 			upgrade_pool.add_item(upgrade_lightning_damage, 10)
 			upgrade_pool.add_item(upgrade_lightning_rate, 10)
 			upgrade_pool.add_item(upgrade_lightning_amount, 10)
+		upgrade_fireball.id:
+			upgrade_pool.add_item(upgrade_fireball_damage, 10)
+			upgrade_pool.add_item(upgrade_fireball_base_damage, 10)
+			upgrade_pool.add_item(upgrade_fireball_rate, 10)
+			upgrade_pool.add_item(upgrade_fireball_split, 1000)
+
 
 
 func pick_upgrades():

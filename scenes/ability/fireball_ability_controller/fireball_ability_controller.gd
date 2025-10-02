@@ -6,14 +6,13 @@ extends Node
 var MAX_RANGE = 350
 var speed = 175
 #the base damage of our ability
-var base_damage = 2
+var base_damage = 2.5
 #base wait time of our timer
 var base_wait_time
-#aura size
+#size
 var base_radius_percent := 1.0
 #the amount of projectiles to spawn from a fork
-var number_of_forked_projectiles := 2
-
+var number_of_forked_projectiles := 1
 #these should be adjusted based on future upgrades
 var added_flat_damage = 0
 var damage_percent_increase = 1.0
@@ -24,12 +23,11 @@ var number_of_attacks := 1
 #! TEST CODE
 var enemies: Array = []
 
-var forks := 1
+var forks := 0
 var chains := 0
 var pierces := 0
 
 #! TEST CODE
-
 
 
 func _ready() -> void:
@@ -77,7 +75,7 @@ func get_and_sort_enemies():
 	#no enemies in range? return an empty array
 	if fenemies.size() == 0:
 		var empty_array = []
-		print_debug("empty array returned")
+		
 		return empty_array
 
 	#sort the array based on distance to player
@@ -87,7 +85,7 @@ func get_and_sort_enemies():
 		return a_distance < b_distance
 	)
 
-	print_debug("enemies sorted")
+	
 	return fenemies
 
 
@@ -139,6 +137,10 @@ func fork_projectile(fireball_instance: FireballAbility, prev_position: Vector2,
 		# var forked_fireball = fireball_instance.duplicate(true)
 		var forked_fireball = fireball_ability.instantiate() as FireballAbility
 
+		forked_fireball.number_of_forks = fireball_instance.number_of_forks
+		forked_fireball.number_of_chains = fireball_instance.number_of_chains
+		forked_fireball.number_of_pierces = fireball_instance.number_of_pierces
+
 		var foreground_layer = get_tree().get_first_node_in_group("foreground_layer")
 		foreground_layer.add_child(forked_fireball)
 
@@ -163,10 +165,8 @@ func fork_projectile(fireball_instance: FireballAbility, prev_position: Vector2,
 		forked_fireball.animation_player.play("fork")
 		forked_fireball.hitbox_component.damage = calculate_damage()
 
+		enemies.remove_at(projectile)
 
-
-func apply_fork_chain_pierce():
-	pass
 
 
 func update_values():
@@ -174,20 +174,18 @@ func update_values():
 
 
 
-
 #listen for the game event upgrade added, then filter for the sword upgrade
 func on_ability_upgrade_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary):
 
 	match upgrade.id:
-		"aura_rate":
-			var percent_reduction = current_upgrades["aura_rate"]["quantity"] * .25
+		"fireball_rate":
+			var percent_reduction = current_upgrades["fireball_rate"]["quantity"] * .15
 			$Timer.wait_time = base_wait_time * (1 - percent_reduction)
 			$Timer.start()
-		"aura_damage":
-			damage_percent_increase = 1 + (current_upgrades["aura_damage"]["quantity"] * .25)
-		"aura_base_damage":
+		"fireball_damage":
+			damage_percent_increase = 1 + (current_upgrades["fireball_damage"]["quantity"] * .25)
+		"fireball_base_damage":
 			base_damage += 1.5
-		"aura_size":
-			base_radius_percent = 1 + (current_upgrades["aura_size"]["quantity"] * .50)
-
-	update_values()
+		"fireball_split":
+			forks += 1
+			number_of_forked_projectiles += 1

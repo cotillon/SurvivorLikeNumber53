@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="Ability" load_steps=2 format=3 uid="uid://i4a7l1sdlhmn"]
+[gd_resource type="Resource" script_class="Ability" load_steps=3 format=3 uid="uid://i4a7l1sdlhmn"]
 
+[ext_resource type="PackedScene" uid="uid://cfnv3dcnwhw5t" path="res://scenes/ability/fireball_ability_controller/fireball_ability_controller.tscn" id="1_wnxue"]
 [ext_resource type="Script" uid="uid://bnjq3kslmqn03" path="res://resources/upgrades/ability.gd" id="2_mmddi"]
 
 [resource]
 script = ExtResource("2_mmddi")
+ability_controller_scene = ExtResource("1_wnxue")
 id = "fireball"
 max_quantity = 1
 name = "Fireball"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://dcafvdt713ptc"]
+
+[ext_resource type="Script" uid="uid://dbg3lgmqkum40" path="res://resources/upgrades/ability_upgrade.gd" id="1_80abq"]
+
+[resource]
+script = ExtResource("1_80abq")
+id = "fireball_damage"
+max_quantity = 5
+name = "Fireball Damage"
+description = "Increases fireball's damage by 25%"

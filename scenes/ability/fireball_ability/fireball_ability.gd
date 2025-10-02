@@ -30,9 +30,9 @@ func set_rotation_on_spawn(spawn_rotation: float):
 
 func fork():
 	hitbox_component.disable_collision()
-	print_debug("collision disabled")
 	var fireball_controller = get_tree().get_first_node_in_group("fireball_controller")
 	await fireball_controller.fork_projectile(self, global_position, velocity)
+	destroy_projectile()
 
 
 
@@ -41,10 +41,9 @@ func chain():
 
 
 func pierce():
-	print_debug("pierce called!")
+	pass
 	# lifetime_timer.start()
 	# await lifetime_timer.timeout
-	# print_debug("timer finished?")
 	# return
 
 
@@ -53,22 +52,18 @@ func destroy_projectile():
 
 
 func on_contact_with_hurtbox():
-	print_debug("contact made")
-
-
-
+	
 	while number_of_forks > 0 or number_of_chains > 0 or number_of_pierces > 0:
 
 		if number_of_forks > 0:
 			number_of_forks -= 1
-			print_debug("number of forks: " + str(number_of_forks))
 			call_deferred("fork")
-			continue
+			return
 
 		elif number_of_chains > 0:
 			chain()
 			number_of_chains -= 1
-			continue
+			return
 
 		elif number_of_pierces > 0:
 			pierce()

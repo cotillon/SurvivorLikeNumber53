@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://bh54if4j72m1u" path="res://assets/audio/sfx/grunting_3_meghan.wav" id="7_l1g56"]
 [ext_resource type="AudioStream" uid="uid://cukyx3mohj6sx" path="res://assets/audio/sfx/grunting_6_meghan.wav" id="8_llc7q"]
 [ext_resource type="AudioStream" uid="uid://cwtipw3gfsd0w" path="res://assets/audio/sfx/grunting_7_meghan.wav" id="9_bfkik"]
-[ext_resource type="PackedScene" uid="uid://cfnv3dcnwhw5t" path="res://scenes/ability/fireball_ability_controller/fireball_ability_controller.tscn" id="10_oxhc3"]
+[ext_resource type="PackedScene" uid="uid://bb6ejt5x1cmx7" path="res://scenes/ability/sword_ability_controller/sword_ability_controller.tscn" id="10_oxhc3"]
 [ext_resource type="Texture2D" uid="uid://ciyabja14aua5" path="res://scenes/game_object/player/player_idle.png" id="12_mxgtx"]
 [ext_resource type="Texture2D" uid="uid://b4jtf0v3b4gsa" path="res://scenes/game_object/player/player_run.png" id="12_oxhc3"]
 
@@ -217,7 +217,7 @@ streams = Array[AudioStream]([ExtResource("5_oxhc3"), ExtResource("6_mxgtx"), Ex
 
 [node name="Abilities" type="Node" parent="."]
 
-[node name="FireballAbilityController" parent="Abilities" instance=ExtResource("10_oxhc3")]
+[node name="SwordAbilityController" parent="Abilities" instance=ExtResource("10_oxhc3")]
 
 [node name="DamageIntervalTimer" type="Timer" parent="."]
 wait_time = 0.5

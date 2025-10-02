@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://byyofgm8ogbgh"]
+
+[ext_resource type="Script" uid="uid://dbg3lgmqkum40" path="res://resources/upgrades/ability_upgrade.gd" id="1_xv43x"]
+
+[resource]
+script = ExtResource("1_xv43x")
+id = "fireball_rate"
+max_quantity = 5
+name = "Fireball Frequency"
+description = "Increases fireball firing rate by 15%"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://d0i6aqcfvgt1r"]
+
+[ext_resource type="Script" uid="uid://dbg3lgmqkum40" path="res://resources/upgrades/ability_upgrade.gd" id="1_e5h5g"]
+
+[resource]
+script = ExtResource("1_e5h5g")
+id = "fireball_split"
+max_quantity = 4
+name = "Fireball Splits"
+description = "Increases both the amount of projectiles per split and the amount of total splits by 1"
