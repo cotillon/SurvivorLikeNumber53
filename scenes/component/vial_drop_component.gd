@@ -35,8 +35,11 @@ func on_died():
 	var spawn_position = (owner as Node2D).global_position
 	var vial_instance = vial_scene.instantiate() as Node2D
 
-
 	var entities_layer = get_tree().get_first_node_in_group("entities_layer")
 	entities_layer.add_child(vial_instance)
 	vial_instance.set_tier(experience_tier)
 	vial_instance.global_position = spawn_position
+
+	GameEvents.emit_experience_dropped(vial_instance)
+
+

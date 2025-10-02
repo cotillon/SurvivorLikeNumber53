@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dba8x0j6urcdh"]
+[gd_scene load_steps=3 format=3 uid="uid://dba8x0j6urcdh"]
 
 [ext_resource type="Script" uid="uid://bw38vnuox81i2" path="res://scenes/ui/arena_time_ui.gd" id="1_oa7xr"]
+[ext_resource type="Script" uid="uid://bnrliyxkhoeon" path="res://scenes/ui/fps_counter.gd" id="2_j8dh0"]
 
 [node name="ArenaTimeUI" type="CanvasLayer"]
 script = ExtResource("1_oa7xr")
@@ -25,3 +26,15 @@ theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/outline_size = 6
 text = "test"
+
+[node name="FPSCounter" type="Label" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_shadow_color = Color(0.24705882, 0.14901961, 0.19215687, 1)
+theme_override_colors/font_outline_color = Color(0.24705882, 0.14901961, 0.19215687, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 6
+text = "FPS: "
+script = ExtResource("2_j8dh0")

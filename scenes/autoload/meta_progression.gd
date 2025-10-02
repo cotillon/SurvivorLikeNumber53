@@ -26,7 +26,6 @@ func load_save_file():
 	save_data = file.get_var()
 
 
-
 func add_meta_upgrade(upgrade: MetaUpgrade):
 
 	if not save_data["meta_upgrades"].has(upgrade.id):
@@ -44,7 +43,5 @@ func get_upgrade_count(upgrade_id: String):
 		return 0
 
 
-
-
-func on_experience_collected(number: float):
-	save_data["meta_upgrade_currency"] += number
+func on_experience_collected(experience: Node2D):
+	save_data["meta_upgrade_currency"] += experience.experience_tier

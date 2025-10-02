@@ -1,3 +1,4 @@
+class_name ExperienceDrop
 extends Node2D
 
 @onready var collision_shape_2d: CollisionShape2D = $Area2D/CollisionShape2D
@@ -11,6 +12,7 @@ func _init() -> void:
 	experience_type_visual.append(load("res://scenes/game_object/experience_vial/experience_small.png"))
 	experience_type_visual.append(load("res://scenes/game_object/experience_vial/experience_medium.png"))
 	experience_type_visual.append(load("res://scenes/game_object/experience_vial/experience_large.png"))
+	experience_type_visual.append(load("res://scenes/game_object/experience_vial/greenrupeeoutline.png"))
 
 
 func _ready() -> void:
@@ -30,14 +32,19 @@ func tween_collect(percent: float, start_position: Vector2):
 
 
 func collect():
-	GameEvents.emit_experience_vial_collected(experience_tier)
+	GameEvents.emit_experience_vial_collected(self)
 	$RandomSteamPlayer2DComponent.play_random()
 	await $RandomSteamPlayer2DComponent.finished
 	queue_free()
 
 
 func set_tier(tier:int):
-	sprite.texture = experience_type_visual[tier]
+
+	if tier < 3:
+		sprite.texture = experience_type_visual[tier]
+	elif tier > 3:
+		sprite.texture = experience_type_visual[3]
+
 	experience_tier = tier + 1
 
 
@@ -59,3 +66,7 @@ func on_area_entered(other_area: Area2D):
 
 	tween.chain()
 	tween.tween_callback(collect)
+
+
+func combine(experience_to_stay, experience_to_delete):
+	pass

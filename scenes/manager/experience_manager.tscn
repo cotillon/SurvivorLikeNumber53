@@ -4,3 +4,7 @@
 
 [node name="ExperienceManager" type="Node"]
 script = ExtResource("1_6uta1")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true

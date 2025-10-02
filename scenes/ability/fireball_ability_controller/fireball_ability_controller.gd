@@ -75,7 +75,7 @@ func get_and_sort_enemies():
 	#no enemies in range? return an empty array
 	if fenemies.size() == 0:
 		var empty_array = []
-		
+
 		return empty_array
 
 	#sort the array based on distance to player
@@ -85,7 +85,7 @@ func get_and_sort_enemies():
 		return a_distance < b_distance
 	)
 
-	
+
 	return fenemies
 
 
