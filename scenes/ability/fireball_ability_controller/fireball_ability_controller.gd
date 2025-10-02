@@ -4,9 +4,9 @@ extends Node
 @onready var player = get_tree().get_first_node_in_group("player") as Node2D
 
 var MAX_RANGE = 350
-var speed = 150
+var speed = 175
 #the base damage of our ability
-var base_damage = 5
+var base_damage = 2
 #base wait time of our timer
 var base_wait_time
 #aura size
@@ -24,9 +24,9 @@ var number_of_attacks := 1
 #! TEST CODE
 var enemies: Array = []
 
-var forks := 0
+var forks := 1
 var chains := 0
-var pierces := 1
+var pierces := 0
 
 #! TEST CODE
 
@@ -77,6 +77,7 @@ func get_and_sort_enemies():
 	#no enemies in range? return an empty array
 	if fenemies.size() == 0:
 		var empty_array = []
+		print_debug("empty array returned")
 		return empty_array
 
 	#sort the array based on distance to player
@@ -102,7 +103,7 @@ func spawn_projectile(number_of_forks: int, number_of_chains: int, number_of_pie
 	fireball_instance.velocity_component.max_speed = speed
 	fireball_instance.hitbox_component.damage = calculate_damage()
 
-	#! TODO 
+	#! TODO
 	fireball_instance.number_of_forks = number_of_forks
 	fireball_instance.number_of_chains = number_of_chains
 	fireball_instance.number_of_pierces = number_of_pierces
@@ -111,30 +112,56 @@ func spawn_projectile(number_of_forks: int, number_of_chains: int, number_of_pie
 
 
 func position_and_aim_projectile(fireball_instance: FireballAbility, attack: int):
-	if enemies.size() == 0:
-		return
-
-	var start_position = player.global_position
-	fireball_instance.global_position = start_position
-
-	var direction_from_start = enemies[attack - 1].global_position - start_position
-	var target_rotation = direction_from_start.angle()
-	fireball_instance.set_rotation_on_spawn(target_rotation)
-	fireball_instance.set_direction(player.global_position.direction_to(enemies[attack - 1].global_position))
 
 
+	if (enemies.size() - 1) >= attack:
+		var start_position = player.global_position
+		fireball_instance.global_position = start_position
 
-func fork_projectile(prev_position: Vector2, prev_velocity):
-	print_debug("fork called!")
+		var direction_from_start = enemies[attack].global_position - start_position
+		var target_rotation = direction_from_start.angle()
+		fireball_instance.set_rotation_on_spawn(target_rotation)
+		fireball_instance.set_direction(player.global_position.direction_to(enemies[attack].global_position))
+
+
+#! TODO, this shits fucked yo
+func fork_projectile(fireball_instance: FireballAbility, prev_position: Vector2, prev_velocity):
+
+	# var rotation_degrees = PI/4
+
+	enemies = get_and_sort_enemies()
 
 	for projectile in number_of_forked_projectiles:
 
-		var forked_fireball = spawn_projectile(0, 0, 0)
+		if enemies.size() <= projectile:
+			return
+
+		# var forked_fireball = fireball_instance.duplicate(true)
+		var forked_fireball = fireball_ability.instantiate() as FireballAbility
+
+		var foreground_layer = get_tree().get_first_node_in_group("foreground_layer")
+		foreground_layer.add_child(forked_fireball)
+
+		var direction_from_start = enemies[projectile].global_position - prev_position
+
+		# forked_fireball.rotate(PI/rotation_degrees)
+		# rotation_degrees = -rotation_degrees
+
 
 		forked_fireball.global_position = prev_position
-		var target_rotation = prev_position.angle()
+		var target_rotation = direction_from_start.angle()
 		forked_fireball.set_rotation_on_spawn(target_rotation)
-		forked_fireball.set_direction(prev_velocity)
+		forked_fireball.velocity_component.max_speed = speed
+		forked_fireball.set_direction(prev_position.direction_to(enemies[projectile].global_position))
+
+		# forked_fireball.set_direction(forked_fireball.global_position\
+		# .direction_to(enemies[0].global_position.rotated(deg_to_rad(rotation_degrees))))
+
+		# forked_fireball.set_direction((forked_fireball.global_position\
+		# .direction_to(enemies[projectile].global_position).rotated(deg_to_rad(rotation_degrees))))
+
+		forked_fireball.animation_player.play("fork")
+		forked_fireball.hitbox_component.damage = calculate_damage()
 
 
 
@@ -144,6 +171,9 @@ func apply_fork_chain_pierce():
 
 func update_values():
 	pass
+
+
+
 
 #listen for the game event upgrade added, then filter for the sword upgrade
 func on_ability_upgrade_added(upgrade: AbilityUpgrade, current_upgrades: Dictionary):

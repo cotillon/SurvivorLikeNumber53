@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var hitbox_component: HitboxComponent = $%HitboxComponent
 @onready var velocity_component: VelocityComponent = $VelocityComponent
 @onready var lifetime_timer: Timer = $LifetimeTimer
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var number_of_forks := 0
 var number_of_chains := 0
@@ -31,8 +32,8 @@ func fork():
 	hitbox_component.disable_collision()
 	print_debug("collision disabled")
 	var fireball_controller = get_tree().get_first_node_in_group("fireball_controller")
-	fireball_controller.fork_projectile(global_position, velocity)
-	destroy_projectile()
+	await fireball_controller.fork_projectile(self, global_position, velocity)
+
 
 
 func chain():

@@ -1,9 +1,36 @@
-[gd_scene load_steps=9 format=3 uid="uid://c5p83fcq2n1lg"]
+[gd_scene load_steps=10 format=3 uid="uid://c5p83fcq2n1lg"]
 
 [ext_resource type="Script" uid="uid://dq28bq6u0bslm" path="res://scenes/ability/fireball_ability/fireball_ability.gd" id="1_3ilnd"]
 [ext_resource type="Texture2D" uid="uid://dnx7sir2mxh0d" path="res://scenes/ability/fireball_ability/fire-ball.png" id="1_6u37w"]
 [ext_resource type="PackedScene" uid="uid://cq0v16jkgprc1" path="res://scenes/component/hitbox_component.tscn" id="2_3ilnd"]
 [ext_resource type="PackedScene" uid="uid://cmjp036op6ubi" path="res://scenes/component/velocity_component.tscn" id="4_nocjj"]
+
+[sub_resource type="Animation" id="Animation_x5i84"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FireballSize/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FireballSize/HitboxComponent/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_nocjj"]
 resource_name = "default"
@@ -23,8 +50,10 @@ tracks/0/keys = {
 "values": [0, 1, 2]
 }
 
-[sub_resource type="Animation" id="Animation_x5i84"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_h1cld"]
+resource_name = "fork"
+length = 0.45
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -32,16 +61,29 @@ tracks/0/path = NodePath("FireballSize/Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.15, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FireballSize/HitboxComponent/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h1cld"]
 _data = {
 &"RESET": SubResource("Animation_x5i84"),
-&"default": SubResource("Animation_nocjj")
+&"default": SubResource("Animation_nocjj"),
+&"fork": SubResource("Animation_h1cld")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_htv1r"]
