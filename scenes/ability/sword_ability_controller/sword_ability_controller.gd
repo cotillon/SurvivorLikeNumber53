@@ -49,7 +49,7 @@ func on_timer_timeout():
 	for attack in number_of_attacks:
 	# TEST CODE TEST CODE TEST CODE TEST CODE
 
-		#instantiate the sword and place it on the nearest enemy
+		#instantiate the sword and place it in the foreground layer
 		var sword_instance = sword_ability.instantiate() as SwordAbility
 		var foreground_layer = get_tree().get_first_node_in_group("foreground_layer")
 		foreground_layer.add_child(sword_instance)

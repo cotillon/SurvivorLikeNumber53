@@ -62,6 +62,7 @@ foreground_layer=""
 upgrade_card=""
 meta_upgrade_card=""
 enemies_layer="contains enemies in our main scene tree"
+fireball_controller="holds the fireball ability controller"
 
 [gui]
 

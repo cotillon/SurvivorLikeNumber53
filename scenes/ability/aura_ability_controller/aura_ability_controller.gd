@@ -5,7 +5,7 @@ extends Node
 @onready var player = get_tree().get_first_node_in_group("player") as Node2D
 
 #the base damage of our ability
-var base_damage = 2.5
+var base_damage = 3.5
 #base wait time of our timer
 var base_wait_time
 #aura size

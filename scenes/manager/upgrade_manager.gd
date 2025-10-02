@@ -38,7 +38,7 @@ func _ready() -> void:
 	#weapons
 	upgrade_pool.add_item(upgrade_axe, 10)
 	upgrade_pool.add_item(upgrade_aura, 10)
-	upgrade_pool.add_item(upgrade_lightning, 10000)
+	upgrade_pool.add_item(upgrade_lightning, 10)
 
 	#base upgrades with no picked weapons
 	upgrade_pool.add_item(upgrade_sword_rate, 10)
@@ -85,7 +85,7 @@ func update_upgrade_pool(chosen_upgrade: AbilityUpgrade):
 		upgrade_lightning.id:
 			upgrade_pool.add_item(upgrade_lightning_damage, 10)
 			upgrade_pool.add_item(upgrade_lightning_rate, 10)
-			upgrade_pool.add_item(upgrade_lightning_amount, 500)
+			upgrade_pool.add_item(upgrade_lightning_amount, 10)
 
 
 func pick_upgrades():

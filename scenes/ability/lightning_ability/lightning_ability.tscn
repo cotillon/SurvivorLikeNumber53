@@ -10,7 +10,6 @@ radius = 9.0
 [sub_resource type="Animation" id="Animation_slb4u"]
 resource_name = "strike"
 length = 0.5
-loop_mode = 2
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false

@@ -47,10 +47,11 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_htv1r"]
 
 [node name="FireballAbility" type="CharacterBody2D"]
+motion_mode = 1
 script = ExtResource("1_3ilnd")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("4_nocjj")]
-max_speed = 100
+max_speed = 50
 acceleration = 25.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -68,7 +69,11 @@ hframes = 3
 
 [node name="HitboxComponent" parent="FireballSize" instance=ExtResource("2_3ilnd")]
 unique_name_in_owner = true
-collision_mask = 4
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FireballSize/HitboxComponent"]
 shape = SubResource("CircleShape2D_htv1r")
+
+[node name="LifetimeTimer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
