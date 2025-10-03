@@ -6,7 +6,7 @@ const MAX_RANGE = 250
 @onready var player = get_tree().get_first_node_in_group("player") as Node2D
 
 #the base damage of our ability
-var base_damage = 5
+var base_damage = 10
 #base wait time of our timer
 var base_wait_time
 #aura size

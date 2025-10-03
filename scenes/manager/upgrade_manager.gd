@@ -8,9 +8,12 @@ extends Node
 var current_upgrades = {}
 var upgrade_pool: WeightedTable = WeightedTable.new()
 
+var weapon_pool: WeightedTable = WeightedTable.new()
+
 #surely there is a better way to do this
 
 #base skills
+var upgrade_sword = preload("res://resources/upgrades/sword.tres")
 var upgrade_axe = preload("res://resources/upgrades/axe.tres")
 var upgrade_aura = preload("res://resources/upgrades/aura.tres")
 var upgrade_lightning = preload("res://resources/upgrades/lightning.tres")
@@ -34,32 +37,33 @@ var upgrade_lightning_damage = preload("res://resources/upgrades/lightning_damag
 var upgrade_lightning_amount = preload("res://resources/upgrades/lightning_amount.tres")
 
 var upgrade_fireball_damage = preload("res://resources/upgrades/fireball_damage.tres")
-var upgrade_fireball_base_damage = preload("res://resources/upgrades/fireball_base_damage.tres") 
+var upgrade_fireball_base_damage = preload("res://resources/upgrades/fireball_base_damage.tres")
 var upgrade_fireball_rate = preload("res://resources/upgrades/fireball_rate.tres")
 var upgrade_fireball_split = preload("res://resources/upgrades/fireball_split.tres")
 
 #player upgrades
 var upgrade_player_speed = preload("res://resources/upgrades/player_speed.tres")
 
-
-
+var counter := 2
+var weapons_counter = 0
 
 func _ready() -> void:
 	#weapons
-	upgrade_pool.add_item(upgrade_axe, 10)
-	upgrade_pool.add_item(upgrade_aura, 10)
-	upgrade_pool.add_item(upgrade_lightning, 10)
-	upgrade_pool.add_item(upgrade_fireball, 10000)
-
+	weapon_pool.add_item(upgrade_sword, 10)
+	weapon_pool.add_item(upgrade_axe, 10)
+	weapon_pool.add_item(upgrade_aura, 10)
+	weapon_pool.add_item(upgrade_lightning, 10)
+	weapon_pool.add_item(upgrade_fireball, 10)
 
 	#base upgrades with no picked weapons
-	upgrade_pool.add_item(upgrade_sword_rate, 10)
-	upgrade_pool.add_item(upgrade_sword_damage, 10)
-	upgrade_pool.add_item(upgrade_sword_amount, 5)
+	# upgrade_pool.add_item(upgrade_sword_rate, 10)
+	# upgrade_pool.add_item(upgrade_sword_damage, 10)
+	# upgrade_pool.add_item(upgrade_sword_amount, 5)
 	upgrade_pool.add_item(upgrade_player_speed, 5)
 
-
 	experience_manager.level_up.connect(on_level_up)
+
+	on_level_up()
 
 
 #BUG SOFTLOCK UPON REACHING THE END OF THE UPGRADES LIST
@@ -77,6 +81,7 @@ func apply_upgrade(upgrade: AbilityUpgrade):
 		var current_quantity = current_upgrades[upgrade.id]["quantity"]
 		if current_quantity == upgrade.max_quantity:
 			upgrade_pool.remove_item(upgrade)
+			weapon_pool.remove_item(upgrade)
 
 	update_upgrade_pool(upgrade)
 	GameEvents.emit_ability_upgrade_added(upgrade, current_upgrades)
@@ -102,7 +107,7 @@ func update_upgrade_pool(chosen_upgrade: AbilityUpgrade):
 			upgrade_pool.add_item(upgrade_fireball_damage, 10)
 			upgrade_pool.add_item(upgrade_fireball_base_damage, 10)
 			upgrade_pool.add_item(upgrade_fireball_rate, 10)
-			upgrade_pool.add_item(upgrade_fireball_split, 1000)
+			upgrade_pool.add_item(upgrade_fireball_split, 10)
 
 
 
@@ -119,15 +124,37 @@ func pick_upgrades():
 	return chosen_upgrades_array
 
 
+func pick_weapons():
+	var chosen_weapons_array: Array = []
+
+	for i in 3:
+		if weapon_pool.items.size() == chosen_weapons_array.size():
+			break
+		var chosen_weapon = weapon_pool.pick_item(chosen_weapons_array)
+		chosen_weapons_array.append(chosen_weapon)
+
+	return chosen_weapons_array
+
+
 func on_upgrade_selected(upgrade:AbilityUpgrade):
 	apply_upgrade(upgrade)
 
+#current_level: int
+func on_level_up():
 
-func on_level_up(current_level: int):
-
+	counter += 1
 	#instantiate our upgrade screen UI element, then call the function to display the cards
 	var upgrade_screen_instance = upgrade_screen_scene.instantiate()
 	add_child(upgrade_screen_instance)
-	var chosen_upgrades_array = pick_upgrades()
-	upgrade_screen_instance.set_ability_upgrades(chosen_upgrades_array as Array[AbilityUpgrade])
+
+	if (counter % 3) == 0 && (weapons_counter < 3):
+		var chosen_weapons_array = pick_weapons()
+		upgrade_screen_instance.set_ability_upgrades(chosen_weapons_array as Array)
+		weapons_counter += 1
+
+
+	else:
+		var chosen_upgrades_array = pick_upgrades()
+		upgrade_screen_instance.set_ability_upgrades(chosen_upgrades_array as Array[AbilityUpgrade])
+
 	upgrade_screen_instance.upgrade_selected.connect(on_upgrade_selected)

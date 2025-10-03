@@ -6,7 +6,7 @@ extends Node
 var MAX_RANGE = 350
 var speed = 175
 #the base damage of our ability
-var base_damage = 2.5
+var base_damage = 5
 #base wait time of our timer
 var base_wait_time
 #size

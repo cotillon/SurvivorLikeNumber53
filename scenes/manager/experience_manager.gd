@@ -1,7 +1,7 @@
 extends Node
 
 signal experience_updated(current_experience: float, target_experience: float)
-signal level_up(new_level: int)
+signal level_up()
 # signal sorting_complete
 
 #how much more experience we need per level
@@ -42,7 +42,7 @@ func increment_experience(experience: Node2D):
 		target_experience += (TARGET_EXPERIENCE_GROWTH * current_level)
 		current_experience = 0
 		experience_updated.emit(current_experience, target_experience)
-		level_up.emit(current_level)
+		level_up.emit()
 
 
 func erase_from_array(target_for_erasure):

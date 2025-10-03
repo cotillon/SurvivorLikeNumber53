@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://yoevpxq4p4yx"]
+[gd_scene load_steps=30 format=3 uid="uid://yoevpxq4p4yx"]
 
 [ext_resource type="Script" uid="uid://b7a730nfxnjpo" path="res://scenes/game_object/player/player.gd" id="1_dovo2"]
 [ext_resource type="Script" uid="uid://61eyujb4srks" path="res://scenes/component/health_component.gd" id="2_ss5pk"]
@@ -9,7 +9,6 @@
 [ext_resource type="AudioStream" uid="uid://bh54if4j72m1u" path="res://assets/audio/sfx/grunting_3_meghan.wav" id="7_l1g56"]
 [ext_resource type="AudioStream" uid="uid://cukyx3mohj6sx" path="res://assets/audio/sfx/grunting_6_meghan.wav" id="8_llc7q"]
 [ext_resource type="AudioStream" uid="uid://cwtipw3gfsd0w" path="res://assets/audio/sfx/grunting_7_meghan.wav" id="9_bfkik"]
-[ext_resource type="PackedScene" uid="uid://bb6ejt5x1cmx7" path="res://scenes/ability/sword_ability_controller/sword_ability_controller.tscn" id="10_oxhc3"]
 [ext_resource type="Texture2D" uid="uid://ciyabja14aua5" path="res://scenes/game_object/player/player_idle.png" id="12_mxgtx"]
 [ext_resource type="Texture2D" uid="uid://b4jtf0v3b4gsa" path="res://scenes/game_object/player/player_run.png" id="12_oxhc3"]
 
@@ -216,8 +215,6 @@ metadata/_custom_type_script = "uid://61eyujb4srks"
 streams = Array[AudioStream]([ExtResource("5_oxhc3"), ExtResource("6_mxgtx"), ExtResource("7_l1g56"), ExtResource("8_llc7q"), ExtResource("9_bfkik")])
 
 [node name="Abilities" type="Node" parent="."]
-
-[node name="SwordAbilityController" parent="Abilities" instance=ExtResource("10_oxhc3")]
 
 [node name="DamageIntervalTimer" type="Timer" parent="."]
 wait_time = 0.5

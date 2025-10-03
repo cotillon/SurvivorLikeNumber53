@@ -68,16 +68,18 @@ func on_timer_timeout():
 		enemy.global_position = get_spawn_position()
 
 
+#arena difficulty increments by 1 every 5 seconds
 func on_arena_difficulty_increased(arena_difficulty: int):
 	var time_off = (0.1 / 12) * arena_difficulty
 	time_off = min(time_off, 0.7)
 	timer.wait_time = base_spawn_time - time_off
 
 	#TODO TODO TODO
-	if arena_difficulty == 6:
-		enemy_table.add_item(hellhound_enemy_scene, 15)
-	elif arena_difficulty == 10:
-		enemy_table.add_item(eye_demon_enemy_scene, 10)
+	if arena_difficulty == 18:
+		enemy_table.add_item(hellhound_enemy_scene, 5)
+	elif arena_difficulty == 33:
+		enemy_table.remove_item(basic_enemy_scene)
+		enemy_table.add_item(eye_demon_enemy_scene, 5)
 
 	#TODO TODO TODO
 	if (arena_difficulty % 3) == 0:
