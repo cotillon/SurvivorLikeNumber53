@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var visuals = $Visuals
 @onready var velocity_component = $VelocityComponent
 @onready var animated_sprite_2d: AnimatedSprite2D = $Visuals/AnimatedSprite2D
+@onready var pickup_collision_shape_2d: CollisionShape2D = %PickupCollisionShape2D
 
 
 #the total damage we should be taking according to how many enemies
@@ -86,10 +87,16 @@ func on_damage_interval_timer_timeout():
 	check_deal_damage()
 
 
-func on_health_changed():
-	GameEvents.emit_player_damaged()
+func on_health_changed(value: String):
+
+	if value == "damage":
+		GameEvents.emit_player_damaged()
+		$RandomSteamPlayer2DComponent.play_random()
+	elif value == "heal":
+		pass
+	
 	update_health_display()
-	$RandomSteamPlayer2DComponent.play_random()
+	
 
 
 func on_ability_upgrade_added(ability_upgrade: AbilityUpgrade, current_upgrades: Dictionary):
@@ -97,4 +104,4 @@ func on_ability_upgrade_added(ability_upgrade: AbilityUpgrade, current_upgrades:
 		var ability = ability_upgrade as Ability
 		abilities.add_child(ability.ability_controller_scene.instantiate())
 	elif ability_upgrade.id == "player_speed":
-		velocity_component.max_speed = base_speed + (base_speed * current_upgrades["player_speed"]["quantity"] * 0.1)
+		velocity_component.max_speed = base_speed + (base_speed * current_upgrades["player_speed"]["quantity"] * 0.2)

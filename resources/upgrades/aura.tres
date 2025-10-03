@@ -9,4 +9,4 @@ ability_controller_scene = ExtResource("1_vnfs2")
 id = "aura"
 max_quantity = 1
 name = "Aura of Decay"
-description = "An aura of decay surrounds you, damaging nearby enemies"
+description = "An aura of decay surrounds you, damaging nearby enemies and increasing your pickup radius"

@@ -7,4 +7,4 @@ script = ExtResource("1_ko475")
 id = "aura_size"
 max_quantity = 8
 name = "Aura Size"
-description = "Increases aura base radius by 50%"
+description = "Increases aura base radius and pickup radius by 50%"

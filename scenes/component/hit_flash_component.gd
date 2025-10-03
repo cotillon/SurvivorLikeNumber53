@@ -12,7 +12,7 @@ func _ready():
 	sprite.material = hit_flash_material
 
 
-func on_health_changed():
+func on_health_changed(_value: String):
 	if hit_flash_tween != null && hit_flash_tween.is_valid():
 		hit_flash_tween.kill()
 

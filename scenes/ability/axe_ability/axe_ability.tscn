@@ -125,6 +125,7 @@ shader_parameter/number_of_images = Vector2(1, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_r58rl"]
 
 [node name="AxeAbility" type="Node2D"]
+scale = Vector2(1.3, 1.3)
 script = ExtResource("1_65u81")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

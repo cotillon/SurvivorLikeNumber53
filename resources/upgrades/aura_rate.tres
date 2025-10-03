@@ -6,5 +6,5 @@
 script = ExtResource("1_b3plu")
 id = "aura_rate"
 max_quantity = 5
-name = "Aura Tick Speed"
-description = "Increases aura tick rate by 25%"
+name = "Aura Pulse Speed"
+description = "Increases aura pulse rate by 25%"

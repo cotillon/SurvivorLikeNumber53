@@ -75,11 +75,11 @@ libraries = {
 autoplay = "move"
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_vgyht")]
-max_health = 20.0
+max_health = 30.0
 
 [node name="VialDropComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_urtbw")]
-drop_percent = 0.75
-experience_tier = 1
+drop_percent = 1.0
+experience_tier = 2
 health_component = NodePath("../HealthComponent")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("4_6okql")]
@@ -91,9 +91,8 @@ health_component = NodePath("../HealthComponent")
 sprite = NodePath("../Visuals/Sprite2D")
 hit_flash_material = SubResource("ShaderMaterial_7kpoi")
 
-[node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("7_o5lok")]
+[node name="DeathComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("7_o5lok")]
 health_component = NodePath("../HealthComponent")
-sprite = NodePath("../Visuals/Sprite2D")
 
 [node name="HitRandomAudioPlayerComponent" parent="." instance=ExtResource("8_52in0")]
 volume_db = -15.0

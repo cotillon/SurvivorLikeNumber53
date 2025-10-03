@@ -2,6 +2,7 @@ class_name AuraAbility
 extends Node2D
 
 @onready var hitbox_component: HitboxComponent = $%HitboxComponent
+@onready var collision_shape_2d: CollisionShape2D = %CollisionShape2D
 @onready var player = get_tree().get_first_node_in_group("player") as Node2D
 
 func _process(delta: float) -> void:

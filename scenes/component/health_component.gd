@@ -2,7 +2,7 @@ class_name HealthComponent
 extends Node
 
 signal died
-signal health_changed
+signal health_changed(value: String)
 
 @export var max_health: float = 10
 var current_health
@@ -14,8 +14,13 @@ func _ready():
 
 func damage(damage_amount: float):
 	current_health = max(current_health - damage_amount, 0)
-	health_changed.emit()
+	health_changed.emit("damage")
 	Callable(check_death).call_deferred()
+
+
+func heal(heal_amount: float):
+	current_health = min(current_health + heal_amount, max_health)
+	health_changed.emit("heal")
 
 
 func get_health_percent():

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://g0dmj5c0kw30"]
+
+[ext_resource type="Script" uid="uid://dbg3lgmqkum40" path="res://resources/upgrades/ability_upgrade.gd" id="1_14fv8"]
+
+[resource]
+script = ExtResource("1_14fv8")
+id = "aura_healing"
+max_quantity = 3
+name = "Aura Regeneration"
+description = "You heal for for 0.3 every time your aura pulses"

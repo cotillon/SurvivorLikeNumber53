@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqfss3uirh6ae"
-path="res://.godot/imported/bat.png-570824d84f9298e375fe87d32a6163b0.ctex"
+uid="uid://ctiirhw66atyd"
+path="res://.godot/imported/sprBloodExplosion_strip11.png-66b14a00eee5bdd62a6001968ae7e910.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/game_object/enemies/bat_enemy/bat.png"
-dest_files=["res://.godot/imported/bat.png-570824d84f9298e375fe87d32a6163b0.ctex"]
+source_file="res://assets/environment/sprBloodExplosion_strip11.png"
+dest_files=["res://.godot/imported/sprBloodExplosion_strip11.png-66b14a00eee5bdd62a6001968ae7e910.ctex"]
 
 [params]
 

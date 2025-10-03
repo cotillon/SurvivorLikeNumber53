@@ -1,10 +1,10 @@
 extends Node2D
 
 @export var health_component: Node
-@export var sprite: Sprite2D
+# @export var sprite: Sprite2D
 
 func _ready() -> void:
-	$GPUParticles2D.texture = sprite.texture
+	# $GPUParticles2D.texture = sprite.texture
 	health_component.died.connect(on_died)
 
 
@@ -18,7 +18,7 @@ func on_died():
 	get_parent().remove_child(self)
 	entities.add_child(self)
 	global_position = spawn_position
-	#$AnimationPlayer.play("default")
+	$AnimationPlayer.play("blood_splatter")
 	$HitRandomAudioPlayerComponent.play_random()
 	await $HitRandomAudioPlayerComponent.finished
 	Callable(queue_free).call_deferred()

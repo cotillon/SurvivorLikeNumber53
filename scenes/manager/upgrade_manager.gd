@@ -31,6 +31,7 @@ var upgrade_aura_rate = preload("res://resources/upgrades/aura_rate.tres")
 var upgrade_aura_damage = preload("res://resources/upgrades/aura_damage.tres")
 var upgrade_aura_base_damage = preload("res://resources/upgrades/aura_base_damage.tres")
 var upgrade_aura_size = preload("res://resources/upgrades/aura_size.tres")
+var upgrade_aura_healing = preload("res://resources/upgrades/aura_healing.tres")
 
 var upgrade_lightning_rate = preload("res://resources/upgrades/lightning_rate.tres")
 var upgrade_lightning_damage = preload("res://resources/upgrades/lightning_damage.tres")
@@ -50,7 +51,7 @@ var weapons_counter = 0
 func _ready() -> void:
 	#weapons
 	weapon_pool.add_item(upgrade_sword, 10)
-	weapon_pool.add_item(upgrade_axe, 10)
+	weapon_pool.add_item(upgrade_axe, 100)
 	weapon_pool.add_item(upgrade_aura, 10)
 	weapon_pool.add_item(upgrade_lightning, 10)
 	weapon_pool.add_item(upgrade_fireball, 10)
@@ -95,10 +96,11 @@ func update_upgrade_pool(chosen_upgrade: AbilityUpgrade):
 			upgrade_pool.add_item(upgrade_axe_damage, 10)
 			upgrade_pool.add_item(upgrade_axe_rate, 10)
 		upgrade_aura.id:
-			upgrade_pool.add_item(upgrade_aura_damage, 10)
+			# upgrade_pool.add_item(upgrade_aura_damage, 10)
 			upgrade_pool.add_item(upgrade_aura_rate, 10)
 			upgrade_pool.add_item(upgrade_aura_size, 10)
 			upgrade_pool.add_item(upgrade_aura_base_damage, 10)
+			upgrade_pool.add_item(upgrade_aura_healing, 10)
 		upgrade_lightning.id:
 			upgrade_pool.add_item(upgrade_lightning_damage, 10)
 			upgrade_pool.add_item(upgrade_lightning_rate, 10)
@@ -147,7 +149,7 @@ func on_level_up():
 	var upgrade_screen_instance = upgrade_screen_scene.instantiate()
 	add_child(upgrade_screen_instance)
 
-	if (counter % 3) == 0 && (weapons_counter < 3):
+	if (counter % 3) == 0 && (weapons_counter < 2):
 		var chosen_weapons_array = pick_weapons()
 		upgrade_screen_instance.set_ability_upgrades(chosen_weapons_array as Array)
 		weapons_counter += 1

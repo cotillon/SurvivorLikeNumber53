@@ -1,19 +1,31 @@
-[gd_scene load_steps=11 format=3 uid="uid://hw5nwxrd13jo"]
+[gd_scene load_steps=9 format=3 uid="uid://hw5nwxrd13jo"]
 
 [ext_resource type="Script" uid="uid://dwgnl188lkpo5" path="res://scenes/component/death_component.gd" id="1_iwr6c"]
-[ext_resource type="Texture2D" uid="uid://cnfm63qxrcp8s" path="res://scenes/game_object/enemies/basic_enemy/basic_enemy.png" id="1_lgj88"]
 [ext_resource type="PackedScene" uid="uid://cnwkwdlt8fb8d" path="res://scenes/component/random_steam_player_2d_component.tscn" id="3_xrqyr"]
 [ext_resource type="AudioStream" uid="uid://i41j44gkr23w" path="res://assets/audio/sfx/hitmarker-sound-effect-sound.mp3" id="4_sn7fp"]
+[ext_resource type="Texture2D" uid="uid://ctiirhw66atyd" path="res://assets/environment/sprBloodExplosion_strip11.png" id="5_3jlqn"]
 
 [sub_resource type="Animation" id="Animation_muesg"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -22,25 +34,13 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_iwr6c"]
 resource_name = "default"
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -49,29 +49,41 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_t5auu"]
+resource_name = "blood_splatter"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_sn7fp"]
 _data = {
 &"RESET": SubResource("Animation_muesg"),
+&"blood_splatter": SubResource("Animation_t5auu"),
 &"default": SubResource("Animation_iwr6c")
 }
-
-[sub_resource type="Curve" id="Curve_3jlqn"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.6745283, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_t5auu"]
-curve = SubResource("Curve_3jlqn")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nsfay"]
-particle_flag_disable_z = true
-direction = Vector3(0, -1, 0)
-spread = 15.0
-initial_velocity_min = 175.0
-initial_velocity_max = 250.0
-angular_velocity_min = -1440.0
-angular_velocity_max = 1440.0
-gravity = Vector3(0, 700, 0)
-scale_curve = SubResource("CurveTexture_t5auu")
 
 [node name="DeathComponent" type="Node2D"]
 script = ExtResource("1_iwr6c")
@@ -81,15 +93,11 @@ libraries = {
 &"": SubResource("AnimationLibrary_sn7fp")
 }
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-emitting = false
-amount = 1
-texture = ExtResource("1_lgj88")
-lifetime = 0.5
-one_shot = true
-fixed_fps = 0
-interpolate = false
-process_material = SubResource("ParticleProcessMaterial_nsfay")
-
 [node name="HitRandomAudioPlayerComponent" parent="." instance=ExtResource("3_xrqyr")]
 streams = Array[AudioStream]([ExtResource("4_sn7fp")])
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.65, 0.65)
+texture = ExtResource("5_3jlqn")
+hframes = 11

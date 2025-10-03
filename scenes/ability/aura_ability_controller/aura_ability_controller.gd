@@ -10,6 +10,9 @@ var base_damage = 3.5
 var base_wait_time
 #aura size
 var base_radius_percent := 1.0
+#healing amount per tick
+var health_regen := 0.0
+var heal_on_tick := false
 
 #these should be adjusted based on future upgrades
 var added_flat_damage = 0
@@ -32,6 +35,8 @@ func _ready():
 	entities_layer.add_child.call_deferred(aura_instance)
 
 
+
+
 func _process(delta: float) -> void:
 
 	#workaround since we can't do this in the ready method
@@ -50,6 +55,9 @@ func calculate_damage() -> float:
 func update_values():
 	aura_instance.hitbox_component.damage = calculate_damage()
 	aura_instance.get_node("AuraSize").scale = Vector2.ONE * base_radius_percent
+	player.get_node("PickupArea2D").scale = Vector2.ONE * base_radius_percent
+	player.pickup_collision_shape_2d.shape.radius = aura_instance.collision_shape_2d.shape.radius
+
 
 
 func on_timer_timeout():
@@ -58,6 +66,10 @@ func on_timer_timeout():
 		return
 	aura_instance.hitbox_component.monitoring = false
 	aura_instance.hitbox_component.monitoring = true
+
+	if heal_on_tick:
+		player.health_component.heal(health_regen)
+
 
 
 #listen for the game event upgrade added, then filter for the sword upgrade
@@ -74,5 +86,8 @@ func on_ability_upgrade_added(upgrade: AbilityUpgrade, current_upgrades: Diction
 			base_damage += 1.5
 		"aura_size":
 			base_radius_percent = 1 + (current_upgrades["aura_size"]["quantity"] * .50)
+		"aura_healing":
+			health_regen += 0.3
+			heal_on_tick = true
 
 	update_values()
