@@ -4,3 +4,6 @@
 
 [node name="HealthComponent" type="Node"]
 script = ExtResource("1_sa7ac")
+
+[node name="HealthRegenTimer" type="Timer" parent="."]
+autostart = true

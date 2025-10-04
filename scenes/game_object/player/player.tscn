@@ -1,8 +1,8 @@
 [gd_scene load_steps=30 format=3 uid="uid://yoevpxq4p4yx"]
 
 [ext_resource type="Script" uid="uid://b7a730nfxnjpo" path="res://scenes/game_object/player/player.gd" id="1_dovo2"]
-[ext_resource type="Script" uid="uid://61eyujb4srks" path="res://scenes/component/health_component.gd" id="2_ss5pk"]
 [ext_resource type="PackedScene" uid="uid://cmjp036op6ubi" path="res://scenes/component/velocity_component.tscn" id="2_tj6oj"]
+[ext_resource type="PackedScene" uid="uid://c8d1r2d4gad0n" path="res://scenes/component/health_component.tscn" id="3_gbew5"]
 [ext_resource type="PackedScene" uid="uid://cnwkwdlt8fb8d" path="res://scenes/component/random_steam_player_2d_component.tscn" id="4_gbew5"]
 [ext_resource type="AudioStream" uid="uid://4tt38xnidv3i" path="res://assets/audio/sfx/grunting_1_meghan.wav" id="5_oxhc3"]
 [ext_resource type="AudioStream" uid="uid://c2hdt0ar5y360" path="res://assets/audio/sfx/grunting_2_meghan.wav" id="6_mxgtx"]
@@ -204,12 +204,9 @@ motion_mode = 1
 script = ExtResource("1_dovo2")
 
 [node name="VelocityComponent" parent="." instance=ExtResource("2_tj6oj")]
-max_speed = 90
-acceleration = 25.0
 
-[node name="HealthComponent" type="Node" parent="."]
-script = ExtResource("2_ss5pk")
-metadata/_custom_type_script = "uid://61eyujb4srks"
+[node name="HealthComponent" parent="." instance=ExtResource("3_gbew5")]
+health_regen = 5.0
 
 [node name="RandomSteamPlayer2DComponent" parent="." instance=ExtResource("4_gbew5")]
 streams = Array[AudioStream]([ExtResource("5_oxhc3"), ExtResource("6_mxgtx"), ExtResource("7_l1g56"), ExtResource("8_llc7q"), ExtResource("9_bfkik")])

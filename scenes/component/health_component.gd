@@ -5,11 +5,15 @@ signal died
 signal health_changed(value: String)
 
 @export var max_health: float = 10
+@export var health_regen: float = 0
+@onready var health_regen_timer: Timer = $HealthRegenTimer
 var current_health
 
 
 func _ready():
+	health_regen_timer.timeout.connect(on_health_regen_timer_timeout)
 	current_health = max_health
+
 
 
 func damage(damage_amount: float):
@@ -33,3 +37,8 @@ func check_death():
 	if current_health == 0:
 		died.emit()
 		owner.queue_free()
+
+
+func on_health_regen_timer_timeout():
+	if health_regen > 0:
+		heal(health_regen)

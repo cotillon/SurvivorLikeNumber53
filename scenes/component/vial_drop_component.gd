@@ -19,7 +19,7 @@ func on_died():
 	var experince_gain_upgrade_count = MetaProgression.get_upgrade_count("experience_gain")
 	var drop_check = randf()
 
-# TODO: reconfigure experience_gain_upgrade_count values in metaprog
+# TODO: remove code related to exp drop metaprog
 	if experince_gain_upgrade_count > 0:
 		adjusted_drop_percent += 0.1
 

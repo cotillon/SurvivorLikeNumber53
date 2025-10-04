@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 #our iframes
 @onready var damage_interval_timer = $DamageIntervalTimer
+
 @onready var health_component = $HealthComponent
 @onready var health_bar = $HealthBar
 @onready var abilities = $Abilities
@@ -16,10 +17,18 @@ extends CharacterBody2D
 #are colliding with player and their respective damages
 var taking_damage_bucket = 0
 
-var base_speed = 0
+#meta upgrades can affect these
+var health_regen: float = 0
+
+
+#base stats
+var base_speed := 90.0
+var acceleration := 25.0
+
 
 func _ready() -> void:
-	base_speed = velocity_component.max_speed
+
+	apply_meta_upgrades()
 
 	$CollisionArea2D.body_entered.connect(on_body_entered)
 	$CollisionArea2D.body_exited.connect(on_body_exited)
@@ -27,7 +36,6 @@ func _ready() -> void:
 	health_component.health_changed.connect(on_health_changed)
 	GameEvents.ability_upgrade_added.connect(on_ability_upgrade_added)
 	update_health_display()
-
 
 
 func _process(delta: float) -> void:
@@ -73,6 +81,15 @@ func animate_and_flip(movement_vector):
 		visuals.scale = Vector2(move_sign, 1)
 
 
+func apply_meta_upgrades():
+	# health_regen = (MetaProgression.get_upgrade_count("health_regen") * 0.1)
+	health_component.health_regen = health_regen
+
+	# var total_speed = base_speed + (MetaProgression.get_upgrade_count("movement_speed") * 10)
+	velocity_component.max_speed = base_speed #total_speed
+	velocity_component.acceleration = acceleration
+
+
 
 func on_body_entered(other_body: Node2D):
 	taking_damage_bucket += other_body.DAMAGE
@@ -96,7 +113,6 @@ func on_health_changed(value: String):
 		pass
 	
 	update_health_display()
-	
 
 
 func on_ability_upgrade_added(ability_upgrade: AbilityUpgrade, current_upgrades: Dictionary):
