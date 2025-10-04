@@ -6,11 +6,13 @@ signal back_pressed
 @onready var sfx_slider: HSlider = %SfxSlider
 @onready var music_slider: HSlider = %MusicSlider
 @onready var back_button: Button = %BackButton
+@onready var toggle_numbers_button: Button = %ToggleNumbersButton
 
 
 func _ready() -> void:
 	back_button.pressed.connect(on_back_pressed)
 	$%WindowButton.pressed.connect(on_window_button_pressed)
+	toggle_numbers_button.pressed.connect(on_toggle_numbers_pressed)
 	sfx_slider.value_changed.connect(on_audio_slider_changed.bind("sfx"))
 	music_slider.value_changed.connect(on_audio_slider_changed.bind("music"))
 	update_display()
@@ -20,6 +22,10 @@ func update_display():
 	window_button.text = "Windowed"
 	if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN:
 		window_button.text = "Fullscreen"
+
+	toggle_numbers_button.text = "Damage Numbers: ON"
+	if GameEvents.damage_numbers_on == false:
+		toggle_numbers_button.text = "Damage Numbers: OFF"
 
 	sfx_slider.value = get_bus_volume_percent("sfx")
 	music_slider.value = get_bus_volume_percent("music")
@@ -50,6 +56,14 @@ func on_window_button_pressed():
 func on_audio_slider_changed(value: float, bus_name: String):
 	set_bus_volume_percent(bus_name, value)
 
+
+func on_toggle_numbers_pressed():
+	if GameEvents.damage_numbers_on:
+		GameEvents.damage_numbers_on = false
+	elif GameEvents.damage_numbers_on == false:
+		GameEvents.damage_numbers_on = true
+		
+	update_display()
 
 
 func on_back_pressed():

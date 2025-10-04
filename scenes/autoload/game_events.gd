@@ -7,6 +7,9 @@ signal experience_cleanup
 signal experience_dropped
 
 
+var damage_numbers_on := true
+
+
 func emit_experience_vial_collected(experience: Node2D):
 	experience_vial_collected.emit(experience)
 

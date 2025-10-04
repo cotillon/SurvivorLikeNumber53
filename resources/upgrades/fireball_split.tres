@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_e5h5g")
 id = "fireball_split"
-max_quantity = 4
+max_quantity = 3
 name = "Fireball Splits"
 description = "Increases both the amount of projectiles per split and the amount of total splits by 1"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MetaUpgrade" load_steps=2 format=3 uid="uid://kilxcb385on2"]
+
+[ext_resource type="Script" uid="uid://c25i48s85jlsj" path="res://resources/meta_upgrades/meta_upgrade.gd" id="1_pk4mr"]
+
+[resource]
+script = ExtResource("1_pk4mr")
+id = "max_health"
+max_quantity = 10
+experience_cost = 4000
+title = "Maximum Health"
+description = "Increases maximum health by 5"

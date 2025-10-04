@@ -70,8 +70,10 @@ func on_timer_timeout():
 
 #arena difficulty increments by 1 every 5 seconds
 func on_arena_difficulty_increased(arena_difficulty: int):
-	var time_off = (0.1 / 12) * arena_difficulty
-	time_off = min(time_off, 0.7)
+
+	#? this affects how often enemies spawn
+	var time_off = (0.1 / 9) * arena_difficulty
+	time_off = min(time_off, 0.9)
 	timer.wait_time = base_spawn_time - time_off
 
 	#TODO TODO TODO
@@ -84,3 +86,4 @@ func on_arena_difficulty_increased(arena_difficulty: int):
 	#TODO TODO TODO
 	if (arena_difficulty % 3) == 0:
 		number_to_spawn += 1
+

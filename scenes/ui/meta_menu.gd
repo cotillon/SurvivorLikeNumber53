@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+#? This is where our custom meta upgrade resources live
 @export var upgrades: Array[MetaUpgrade] = []
 
 @onready var grid_container: GridContainer = %GridContainer

@@ -125,8 +125,6 @@ func position_and_aim_projectile(fireball_instance: FireballAbility, attack: int
 #! TODO, this shits fucked yo
 func fork_projectile(fireball_instance: FireballAbility, prev_position: Vector2, prev_velocity):
 
-	# var rotation_degrees = PI/4
-
 	enemies = get_and_sort_enemies()
 
 	for projectile in number_of_forked_projectiles:
@@ -149,18 +147,16 @@ func fork_projectile(fireball_instance: FireballAbility, prev_position: Vector2,
 		# forked_fireball.rotate(PI/rotation_degrees)
 		# rotation_degrees = -rotation_degrees
 
-
+		#! un-fuck this projectile split behavior
 		forked_fireball.global_position = prev_position
-		var target_rotation = direction_from_start.angle()
+		# var target_rotation = direction_from_start.angle()
+		var direction = Vector2.RIGHT.rotated(randf_range(0, TAU))
+		var target_rotation = direction.angle()
 		forked_fireball.set_rotation_on_spawn(target_rotation)
 		forked_fireball.velocity_component.max_speed = speed
-		forked_fireball.set_direction(prev_position.direction_to(enemies[projectile].global_position))
+		forked_fireball.set_direction(direction.normalized())
+		# forked_fireball.set_direction(prev_position.direction_to(enemies[projectile].global_position))
 
-		# forked_fireball.set_direction(forked_fireball.global_position\
-		# .direction_to(enemies[0].global_position.rotated(deg_to_rad(rotation_degrees))))
-
-		# forked_fireball.set_direction((forked_fireball.global_position\
-		# .direction_to(enemies[projectile].global_position).rotated(deg_to_rad(rotation_degrees))))
 
 		forked_fireball.animation_player.play("fork")
 		forked_fireball.hitbox_component.damage = calculate_damage()

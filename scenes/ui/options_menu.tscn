@@ -39,7 +39,7 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/separation = 24
+theme_override_constants/separation = 12
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -94,6 +94,14 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 0
+text = "Window toggle"
+
+[node name="ToggleNumbersButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_0ejsc")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Toggle Damage Numbers"
 
 [node name="BackButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer" instance=ExtResource("3_0ejsc")]
 unique_name_in_owner = true

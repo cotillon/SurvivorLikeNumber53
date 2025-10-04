@@ -7,6 +7,7 @@ func _ready() -> void:
 
 
 func start(text: String):
+
 	$Label.text = text
 
 	var tween = create_tween()

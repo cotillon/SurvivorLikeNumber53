@@ -18,13 +18,14 @@ extends CharacterBody2D
 var taking_damage_bucket = 0
 
 #meta upgrades can affect these
-var health_regen: float = 0
-
+var health_regen: float
+var total_health: float
+var total_speed: float
 
 #base stats
 var base_speed := 90.0
 var acceleration := 25.0
-
+var base_health := 10.0
 
 func _ready() -> void:
 
@@ -82,12 +83,16 @@ func animate_and_flip(movement_vector):
 
 
 func apply_meta_upgrades():
-	# health_regen = (MetaProgression.get_upgrade_count("health_regen") * 0.1)
+	health_regen = (MetaProgression.get_upgrade_count("health_regen") * 0.1)
 	health_component.health_regen = health_regen
 
-	# var total_speed = base_speed + (MetaProgression.get_upgrade_count("movement_speed") * 10)
-	velocity_component.max_speed = base_speed #total_speed
+	total_speed = base_speed + (MetaProgression.get_upgrade_count("movement_speed") * 5)
+	velocity_component.max_speed = total_speed
 	velocity_component.acceleration = acceleration
+
+	total_health = base_health + (MetaProgression.get_upgrade_count("max_health") * .5)
+	health_component.max_health = total_health
+	health_component.current_health = total_health
 
 
 

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="MetaUpgrade" load_steps=2 format=3 uid="uid://bwxhiuiccccmi"]
+
+[ext_resource type="Script" uid="uid://c25i48s85jlsj" path="res://resources/meta_upgrades/meta_upgrade.gd" id="1_7qb4o"]
+
+[resource]
+script = ExtResource("1_7qb4o")
+id = "movement_speed"
+max_quantity = 4
+experience_cost = 7500
+title = "Movement Speed"
+description = "Increases movement speed by 5 (5 what? You'll never know.)"
