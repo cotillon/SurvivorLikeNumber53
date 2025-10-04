@@ -11,7 +11,7 @@ const TARGET_EXPERIENCE_GROWTH = 3
 
 var experience_locations: Array[Node2D] = []
 
-var consolidate_range := 1000
+# var consolidate_range := 1000
 
 var current_experience = 0
 var current_level = 1
@@ -59,10 +59,10 @@ func on_timer_timeout():
 
 func on_experience_dropped(location):
 
-	if experience_locations.size() > 750:
+	if experience_locations.size() > 650:
 		GameEvents.clamp_experience_drops = true
 	
-	if experience_locations.size() < 730:
+	if experience_locations.size() < 620:
 		experience_locations.append(location)
 		GameEvents.clamp_experience_drops = false
 

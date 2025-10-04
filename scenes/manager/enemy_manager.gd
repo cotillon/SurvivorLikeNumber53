@@ -97,4 +97,3 @@ func on_arena_difficulty_increased(arena_difficulty: int):
 
 func on_unit_died(enemy):
 	total_enemies.erase(enemy)
-	print_debug(total_enemies.size())

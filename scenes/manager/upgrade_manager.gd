@@ -38,6 +38,7 @@ var upgrade_aura_healing = preload("res://resources/upgrades/aura_healing.tres")
 var upgrade_lightning_rate = preload("res://resources/upgrades/lightning_rate.tres")
 var upgrade_lightning_damage = preload("res://resources/upgrades/lightning_damage.tres")
 var upgrade_lightning_amount = preload("res://resources/upgrades/lightning_amount.tres")
+var upgrade_lightning_strike_size = preload("res://resources/upgrades/lightning_strike_size.tres")
 
 var upgrade_fireball_damage = preload("res://resources/upgrades/fireball_damage.tres")
 var upgrade_fireball_base_damage = preload("res://resources/upgrades/fireball_base_damage.tres")
@@ -56,7 +57,7 @@ func _ready() -> void:
 	weapon_pool.add_item(upgrade_axe, 10)
 	weapon_pool.add_item(upgrade_aura, 10)
 	weapon_pool.add_item(upgrade_lightning, 10)
-	weapon_pool.add_item(upgrade_fireball, 1000)
+	weapon_pool.add_item(upgrade_fireball, 10)
 
 	#base upgrades with no picked weapons
 	upgrade_pool.add_item(upgrade_player_speed, 5)
@@ -110,11 +111,12 @@ func update_upgrade_pool(chosen_upgrade: AbilityUpgrade):
 			upgrade_pool.add_item(upgrade_lightning_damage, 10)
 			upgrade_pool.add_item(upgrade_lightning_rate, 10)
 			upgrade_pool.add_item(upgrade_lightning_amount, 10)
+			upgrade_pool.add_item(upgrade_lightning_strike_size, 10)
 		upgrade_fireball.id:
 			upgrade_pool.add_item(upgrade_fireball_damage, 10)
 			upgrade_pool.add_item(upgrade_fireball_base_damage, 10)
 			upgrade_pool.add_item(upgrade_fireball_rate, 10)
-			upgrade_pool.add_item(upgrade_fireball_split, 1000)
+			upgrade_pool.add_item(upgrade_fireball_split, 10)
 
 
 

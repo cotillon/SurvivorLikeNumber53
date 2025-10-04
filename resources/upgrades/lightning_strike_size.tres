@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://yv401s120n3y"]
+
+[ext_resource type="Script" uid="uid://dbg3lgmqkum40" path="res://resources/upgrades/ability_upgrade.gd" id="1_5motd"]
+
+[resource]
+script = ExtResource("1_5motd")
+id = "lightning_strike_size"
+max_quantity = 4
+name = "Lightning Size"
+description = "Increases the area of your lightning strikes by 35%"

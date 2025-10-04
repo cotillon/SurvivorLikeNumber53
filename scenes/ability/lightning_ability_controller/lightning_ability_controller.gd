@@ -52,16 +52,18 @@ func on_timer_timeout():
 		foreground_layer.add_child(lightning_instance)
 
 		#assign our damage to the hitbox's damage component
-		lightning_instance.hitbox_component.damage = calculate_damage()
+		update_values()
 
 	# TEST CODE TEST CODE TEST CODE TEST CODE
 		if (enemies.size() - 1) >= attack:
-			#spawn the sword on the enemy position
+			#spawn the attack on the enemy position
 			lightning_instance.global_position = enemies[attack].global_position
 
-			#rotate the sword to face the enemy
-			#var enemy_direction = enemies[attack].global_position - lightning_instance.global_position
-			#lightning_instance.rotation = enemy_direction.angle()
+
+func update_values():
+	lightning_instance.hitbox_component.damage = calculate_damage()
+	lightning_instance.strike_size.scale = base_radius_percent * Vector2.ONE
+
 
 
 #applies our damage scaling formula and returns the result
@@ -82,3 +84,5 @@ func on_ability_upgrade_added(upgrade: AbilityUpgrade, current_upgrades: Diction
 			damage_percent_increase = 1 + (current_upgrades["lightning_damage"]["quantity"] * .15)
 		"lightning_amount":
 			number_of_attacks = (number_of_attacks*2)
+		"lightning_strike_size":
+			base_radius_percent = 1 + (current_upgrades["lightning_strike_size"]["quantity"] * .35)

@@ -7,4 +7,4 @@ script = ExtResource("1_3mc7m")
 id = "lightning_amount"
 max_quantity = 4
 name = "Lightning Amount"
-description = "Doubles the amount of lightning strikes"
+description = "Doubles the current amount of lightning strikes"
