@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dfkrh7qaen2by"]
+[gd_scene load_steps=11 format=3 uid="uid://dfkrh7qaen2by"]
 
 [ext_resource type="Script" uid="uid://52crbw4ld3u0" path="res://scenes/ability/sword_ability/sword_ability.gd" id="1_t8g1f"]
 [ext_resource type="PackedScene" uid="uid://cq0v16jkgprc1" path="res://scenes/component/hitbox_component.tscn" id="2_abpad"]
 [ext_resource type="Texture2D" uid="uid://u1fktaqxbxc" path="res://scenes/ability/sword_ability/spwpn_scythe_of_curses.png" id="2_t8g1f"]
+[ext_resource type="PackedScene" uid="uid://q3ije2yxg5rc" path="res://scenes/ability/blood_pool/blood_pool.tscn" id="2_ut1t0"]
 
 [sub_resource type="Animation" id="Animation_abpad"]
 length = 0.001
@@ -188,6 +189,7 @@ size = Vector2(50, 61)
 
 [node name="SwordAbility" type="Node2D"]
 script = ExtResource("1_t8g1f")
+blood_pool_scene = ExtResource("2_ut1t0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

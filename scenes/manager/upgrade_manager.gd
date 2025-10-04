@@ -22,10 +22,12 @@ var upgrade_fireball = preload("res://resources/upgrades/fireball.tres")
 #skill upgrades
 var upgrade_axe_damage = preload("res://resources/upgrades/axe_damage.tres")
 var upgrade_axe_rate = preload("res://resources/upgrades/axe_rate.tres")
+var upgrade_axe_proj_speed = preload("res://resources/upgrades/axe_proj_speed.tres")
 
 var upgrade_sword_rate = preload("res://resources/upgrades/sword_rate.tres")
 var upgrade_sword_damage = preload("res://resources/upgrades/sword_damage.tres")
 var upgrade_sword_amount = preload("res://resources/upgrades/sword_amount.tres")
+var upgrade_sword_pool_size = preload("res://resources/upgrades/sword_pool_size.tres")
 
 var upgrade_aura_rate = preload("res://resources/upgrades/aura_rate.tres")
 var upgrade_aura_damage = preload("res://resources/upgrades/aura_damage.tres")
@@ -51,15 +53,12 @@ var weapons_counter = 0
 func _ready() -> void:
 	#weapons
 	weapon_pool.add_item(upgrade_sword, 10)
-	weapon_pool.add_item(upgrade_axe, 100)
+	weapon_pool.add_item(upgrade_axe, 10)
 	weapon_pool.add_item(upgrade_aura, 10)
 	weapon_pool.add_item(upgrade_lightning, 10)
 	weapon_pool.add_item(upgrade_fireball, 10)
 
 	#base upgrades with no picked weapons
-	# upgrade_pool.add_item(upgrade_sword_rate, 10)
-	# upgrade_pool.add_item(upgrade_sword_damage, 10)
-	# upgrade_pool.add_item(upgrade_sword_amount, 5)
 	upgrade_pool.add_item(upgrade_player_speed, 5)
 
 	experience_manager.level_up.connect(on_level_up)
@@ -92,9 +91,15 @@ func apply_upgrade(upgrade: AbilityUpgrade):
 func update_upgrade_pool(chosen_upgrade: AbilityUpgrade):
 
 	match chosen_upgrade.id:
+		upgrade_sword.id:
+			upgrade_pool.add_item(upgrade_sword_rate, 10)
+			upgrade_pool.add_item(upgrade_sword_damage, 10)
+			upgrade_pool.add_item(upgrade_sword_amount, 5)
+			upgrade_pool.add_item(upgrade_sword_pool_size, 10)
 		upgrade_axe.id:
 			upgrade_pool.add_item(upgrade_axe_damage, 10)
 			upgrade_pool.add_item(upgrade_axe_rate, 10)
+			upgrade_pool.add_item(upgrade_axe_proj_speed, 5)
 		upgrade_aura.id:
 			# upgrade_pool.add_item(upgrade_aura_damage, 10)
 			upgrade_pool.add_item(upgrade_aura_rate, 10)

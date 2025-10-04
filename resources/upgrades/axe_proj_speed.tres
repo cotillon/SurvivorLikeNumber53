@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://d2wyqw5fvopyy"]
+
+[ext_resource type="Script" uid="uid://dbg3lgmqkum40" path="res://resources/upgrades/ability_upgrade.gd" id="1_2py4t"]
+
+[resource]
+script = ExtResource("1_2py4t")
+id = "axe_proj_speed"
+max_quantity = 3
+name = "Axe Projectile Speed"
+description = "Increases axe orbit speed by 25%"

@@ -5,11 +5,13 @@ const MAX_RANGE = 100
 @export var sword_ability: PackedScene
 
 #the base damage of our ability
-var BASE_DAMAGE = 5
+var base_damage = 5
+var blood_pool_base_damage = 1
 #base wait time of our timer
 var base_wait_time
 #the number of swords to spawn
 var number_of_attacks = 1
+var blood_pool_radius = 1.0
 
 #these should be adjusted based on future upgrades
 var added_flat_damage = 0
@@ -56,6 +58,8 @@ func on_timer_timeout():
 
 		#assign our damage to the hitbox's damage component
 		sword_instance.hitbox_component.damage = calculate_damage()
+		sword_instance.blood_pool_damage = calculate_blood_damage()
+		sword_instance.blood_pool_radius = blood_pool_radius
 
 	# TEST CODE TEST CODE TEST CODE TEST CODE
 		if (enemies.size() - 1) >= attack:
@@ -70,7 +74,13 @@ func on_timer_timeout():
 
 #applies our damage scaling formula and returns the result
 func calculate_damage() -> float:
-	var total_damage = (BASE_DAMAGE + added_flat_damage) * damage_percent_increase
+	var total_damage = (base_damage + added_flat_damage) * damage_percent_increase
+	return total_damage
+
+
+
+func calculate_blood_damage() -> float:
+	var total_damage = blood_pool_base_damage * damage_percent_increase
 	return total_damage
 
 
@@ -79,10 +89,13 @@ func on_ability_upgrade_added(upgrade: AbilityUpgrade, current_upgrades: Diction
 
 	match upgrade.id:
 		"sword_rate":
-			var percent_reduction = current_upgrades["sword_rate"]["quantity"] * .1
+			var percent_reduction = current_upgrades["sword_rate"]["quantity"] * .20
 			$Timer.wait_time = base_wait_time * (1 - percent_reduction)
 			$Timer.start()
 		"sword_damage":
 			damage_percent_increase = 1 + (current_upgrades["sword_damage"]["quantity"] * .15)
 		"sword_amount":
 			number_of_attacks += 1
+		"sword_pool_size":
+			blood_pool_radius = 1 + (current_upgrades["sword_pool_size"]["quantity"] * .30)
+

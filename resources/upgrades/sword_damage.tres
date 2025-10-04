@@ -5,6 +5,5 @@
 [resource]
 script = ExtResource("1_04we8")
 id = "sword_damage"
-max_quantity = 5
-name = "Sword damage"
-description = "Increases sword attack damage by 15%"
+name = "Scythe damage"
+description = "Increases scythe hit damage and blood pool damage by 15%"

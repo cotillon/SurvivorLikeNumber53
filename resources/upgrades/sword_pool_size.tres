@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AbilityUpgrade" load_steps=2 format=3 uid="uid://cg7rct4bgr0x5"]
+
+[ext_resource type="Script" uid="uid://dbg3lgmqkum40" path="res://resources/upgrades/ability_upgrade.gd" id="1_m2w1e"]
+
+[resource]
+script = ExtResource("1_m2w1e")
+id = "sword_pool_size"
+max_quantity = 4
+name = "Scythe pool size"
+description = "Increases the size of blood pools left by the scythe by 30%"

@@ -11,9 +11,9 @@ func _ready() -> void:
 
 func on_area_entered(other_area: Area2D):
 
-	#this should work to filter the area if pass is replaced with return but doesn't 
-	if other_area != HurtboxComponent:
-		pass
+	#this should work to filter the area
+	if not other_area is HurtboxComponent:
+		return
 	contact_with_hurtbox.emit()
 
 

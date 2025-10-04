@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=3 uid="uid://q3ije2yxg5rc"]
+
+[ext_resource type="Script" uid="uid://dr7s6of462i4l" path="res://scenes/ability/blood_pool/blood_pool.gd" id="1_6hlno"]
+[ext_resource type="Texture2D" uid="uid://bpr0fmhp6hyvc" path="res://scenes/ability/blood_pool/bloodpool.png" id="1_eee0g"]
+[ext_resource type="PackedScene" uid="uid://cq0v16jkgprc1" path="res://scenes/component/hitbox_component.tscn" id="2_kk3bq"]
+
+[sub_resource type="Animation" id="Animation_6hlno"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PoolSize/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_kk3bq"]
+resource_name = "default"
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PoolSize/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p3ico"]
+_data = {
+&"RESET": SubResource("Animation_6hlno"),
+&"default": SubResource("Animation_kk3bq")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6hlno"]
+radius = 7.0
+
+[node name="BloodPool" type="Node2D"]
+script = ExtResource("1_6hlno")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_p3ico")
+}
+autoplay = "default"
+
+[node name="PoolSize" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Sprite2D" type="Sprite2D" parent="PoolSize"]
+z_index = -1
+scale = Vector2(2, 2)
+texture = ExtResource("1_eee0g")
+hframes = 3
+
+[node name="HitboxComponent" parent="PoolSize" instance=ExtResource("2_kk3bq")]
+unique_name_in_owner = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PoolSize/HitboxComponent"]
+position = Vector2(0, -1)
+rotation = 1.5707964
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_6hlno")
+
+[node name="LifetimeTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[node name="TickTimer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true

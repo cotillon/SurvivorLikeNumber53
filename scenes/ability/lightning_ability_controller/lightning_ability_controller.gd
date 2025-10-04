@@ -12,7 +12,7 @@ var base_wait_time
 #aura size
 var base_radius_percent := 1.0
 #number of attacks to spawn
-var number_of_attacks := 1
+var number_of_attacks := 2
 
 #these should be adjusted based on future upgrades
 var added_flat_damage = 0

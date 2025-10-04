@@ -2,6 +2,10 @@ extends Node2D
 
 const MAX_RADIUS = 100
 
+var duration := 3
+
+var proj_speed : float
+
 
 @onready var hitbox_component = $HitboxComponent as HitboxComponent
 @onready var player = get_tree().get_first_node_in_group("player") as Node2D
@@ -13,7 +17,7 @@ func _ready() -> void:
 	base_rotation = Vector2.RIGHT.rotated(randf_range(0, TAU))
 
 	var tween = create_tween()
-	tween.tween_method(tween_method, 0.0, 2.0, 3)
+	tween.tween_method(tween_method, 0.0, proj_speed, duration)
 	tween.tween_callback(queue_free)
 
 
