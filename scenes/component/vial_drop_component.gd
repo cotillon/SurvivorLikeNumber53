@@ -14,14 +14,10 @@ func _ready():
 	(health_component as HealthComponent).died.connect(on_died)
 
 
-func on_died():
+func on_died(_entity):
 	var adjusted_drop_percent = drop_percent
-	var experince_gain_upgrade_count = MetaProgression.get_upgrade_count("experience_gain")
-	var drop_check = randf()
 
-# TODO: remove code related to exp drop metaprog
-	if experince_gain_upgrade_count > 0:
-		adjusted_drop_percent += 0.1
+	var drop_check = randf()
 
 	if drop_check > adjusted_drop_percent:
 		return
@@ -31,6 +27,14 @@ func on_died():
 
 	if not owner is Node2D:
 		return
+
+	if GameEvents.clamp_experience_drops:
+		return
+
+	drop_experience()
+
+
+func drop_experience():
 
 	var spawn_position = (owner as Node2D).global_position
 	var vial_instance = vial_scene.instantiate() as Node2D

@@ -13,6 +13,7 @@ var base_spawn_time = 0
 var enemy_table = WeightedTable.new()
 var number_to_spawn := 1
 
+var total_enemies : Array = []
 
 func _ready() -> void:
 	enemy_table.add_item(basic_enemy_scene, 10)
@@ -20,6 +21,7 @@ func _ready() -> void:
 
 	timer.timeout.connect(on_timer_timeout)
 	arena_time_manager.arena_difficulty_increased.connect(on_arena_difficulty_increased)
+	GameEvents.unit_died.connect(on_unit_died)
 
 
 #gets a valid spawn position, taking walls into account
@@ -59,9 +61,14 @@ func on_timer_timeout():
 	if player == null:
 		return
 
+	if total_enemies.size() > 250:
+		return
+
 	for i in number_to_spawn:
 		var enemy_scene = enemy_table.pick_item()
 		var enemy = enemy_scene.instantiate() as Node2D
+
+		total_enemies.append(enemy)
 
 		var enemies_layer = get_tree().get_first_node_in_group("enemies_layer")
 		enemies_layer.add_child(enemy)
@@ -72,7 +79,7 @@ func on_timer_timeout():
 func on_arena_difficulty_increased(arena_difficulty: int):
 
 	#? this affects how often enemies spawn
-	var time_off = (0.1 / 9) * arena_difficulty
+	var time_off = (0.1 / 7) * arena_difficulty
 	time_off = min(time_off, 0.9)
 	timer.wait_time = base_spawn_time - time_off
 
@@ -87,3 +94,7 @@ func on_arena_difficulty_increased(arena_difficulty: int):
 	if (arena_difficulty % 3) == 0:
 		number_to_spawn += 1
 
+
+func on_unit_died(enemy):
+	total_enemies.erase(enemy)
+	print_debug(total_enemies.size())

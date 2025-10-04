@@ -5,9 +5,12 @@ signal ability_upgrade_added(upgrade: AbilityUpgrade, current_upgrades: Dictiona
 signal player_damaged
 signal experience_cleanup
 signal experience_dropped
+signal unit_died(unit: Node2D)
 
 
 var damage_numbers_on := true
+
+var clamp_experience_drops := false
 
 
 func emit_experience_vial_collected(experience: Node2D):
@@ -28,3 +31,9 @@ func emit_experience_cleanup():
 
 func emit_experience_dropped(experience_instance: Node2D):
 	experience_dropped.emit(experience_instance)
+
+
+func emit_unit_died(unit):
+	if unit is Player:
+		return
+	unit_died.emit(unit)

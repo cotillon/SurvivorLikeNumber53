@@ -8,9 +8,11 @@ func _ready() -> void:
 	health_component.died.connect(on_died)
 
 
-func on_died():
+
+func on_died(_entity):
 	if owner == null || not owner is Node2D:
 		return
+
 
 	var spawn_position = owner.global_position
 

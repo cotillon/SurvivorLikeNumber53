@@ -37,6 +37,7 @@ func increment_experience(experience: Node2D):
 	var target_for_erasure = experience_locations.find(experience)
 	erase_from_array(target_for_erasure)
 
+
 	if current_experience == target_experience:
 		current_level += 1
 		target_experience += (TARGET_EXPERIENCE_GROWTH * current_level)
@@ -47,7 +48,8 @@ func increment_experience(experience: Node2D):
 
 func erase_from_array(target_for_erasure):
 	# await sorting_complete
-	experience_locations.remove_at(target_for_erasure)
+	if experience_locations.size() < 1:
+		experience_locations.remove_at(target_for_erasure)
 
 func on_timer_timeout():
 	# GameEvents.emit_experience_cleanup()
@@ -56,7 +58,13 @@ func on_timer_timeout():
 
 
 func on_experience_dropped(location):
-	experience_locations.append(location)
+
+	if experience_locations.size() > 750:
+		GameEvents.clamp_experience_drops = true
+	
+	if experience_locations.size() < 730:
+		experience_locations.append(location)
+		GameEvents.clamp_experience_drops = false
 
 
 """
