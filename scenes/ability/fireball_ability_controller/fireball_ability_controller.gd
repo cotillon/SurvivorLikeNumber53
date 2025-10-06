@@ -20,14 +20,12 @@ var damage_percent_increase = 1.0
 var number_of_attacks := 1
 
 
-#! TEST CODE
 var enemies: Array = []
 
 var forks := 0
 var chains := 0
 var pierces := 0
 
-#! TEST CODE
 
 
 func _ready() -> void:
@@ -40,30 +38,10 @@ func _ready() -> void:
 	GameEvents.ability_upgrade_added.connect(on_ability_upgrade_added)
 
 
-func _process(delta: float) -> void:
-	pass
-
-
 	#applies our damage scaling formula and returns the result
 func calculate_damage() -> float:
 	var total_damage = (base_damage + added_flat_damage) * damage_percent_increase
 	return total_damage
-
-
-func on_timer_timeout():
-	#identify the player, then check if it exists
-	if player == null:
-		return
-
-	enemies = get_and_sort_enemies()
-
-	if enemies.size() == 0:
-		return
-
-	for attack in number_of_attacks:
-		var fireball_instance = spawn_projectile(forks, chains, pierces)
-		position_and_aim_projectile(fireball_instance, attack)
-
 
 
 func get_and_sort_enemies():
@@ -89,7 +67,7 @@ func get_and_sort_enemies():
 	return fenemies
 
 
-func spawn_projectile(number_of_forks: int, number_of_chains: int, number_of_pierces: int):
+func spawn_projectile():
 	if enemies.size() <= 0:
 		return
 
@@ -101,10 +79,10 @@ func spawn_projectile(number_of_forks: int, number_of_chains: int, number_of_pie
 	fireball_instance.velocity_component.max_speed = speed
 	fireball_instance.hitbox_component.damage = calculate_damage()
 
-	#! TODO
-	fireball_instance.number_of_forks = number_of_forks
-	fireball_instance.number_of_chains = number_of_chains
-	fireball_instance.number_of_pierces = number_of_pierces
+
+	fireball_instance.number_of_forks = forks
+	fireball_instance.number_of_chains = chains
+	fireball_instance.number_of_pierces = pierces
 
 	return fireball_instance
 
@@ -122,7 +100,7 @@ func position_and_aim_projectile(fireball_instance: FireballAbility, attack: int
 		fireball_instance.set_direction(player.global_position.direction_to(enemies[attack].global_position))
 
 
-#! TODO, this shits fucked yo
+#! the angle on this isn't quite right
 func fork_projectile(fireball_instance: FireballAbility, prev_position: Vector2, prev_velocity):
 
 	enemies = get_and_sort_enemies()
@@ -132,7 +110,6 @@ func fork_projectile(fireball_instance: FireballAbility, prev_position: Vector2,
 		if enemies.size() <= projectile:
 			return
 
-		# var forked_fireball = fireball_instance.duplicate(true)
 		var forked_fireball = fireball_ability.instantiate() as FireballAbility
 
 		forked_fireball.number_of_forks = fireball_instance.number_of_forks
@@ -142,32 +119,35 @@ func fork_projectile(fireball_instance: FireballAbility, prev_position: Vector2,
 		var foreground_layer = get_tree().get_first_node_in_group("foreground_layer")
 		foreground_layer.add_child(forked_fireball)
 
-		var direction_from_start = enemies[projectile].global_position - prev_position
-
-		# forked_fireball.rotate(PI/rotation_degrees)
-		# rotation_degrees = -rotation_degrees
-
-		#! un-fuck this projectile split behavior
 		forked_fireball.global_position = prev_position
-		# var target_rotation = direction_from_start.angle()
-		var direction = Vector2.RIGHT.rotated(randf_range(0, TAU))
+
+		var fork_angle = float(projectile)
+
+		var direction = prev_velocity.rotated(((TAU / 3) / number_of_forked_projectiles) * (fork_angle / 3))
 		var target_rotation = direction.angle()
 		forked_fireball.set_rotation_on_spawn(target_rotation)
 		forked_fireball.velocity_component.max_speed = speed
 		forked_fireball.set_direction(direction.normalized())
-		# forked_fireball.set_direction(prev_position.direction_to(enemies[projectile].global_position))
-
 
 		forked_fireball.animation_player.play("fork")
 		forked_fireball.hitbox_component.damage = calculate_damage()
 
-		enemies.remove_at(projectile)
+		#!
+		# enemies.remove_at(projectile)
 
 
+func on_timer_timeout():
+	if player == null:
+		return
 
-func update_values():
-	pass
+	enemies = get_and_sort_enemies()
 
+	if enemies.size() == 0:
+		return
+
+	for attack in number_of_attacks:
+		var fireball_instance = spawn_projectile()
+		position_and_aim_projectile(fireball_instance, attack)
 
 
 #listen for the game event upgrade added, then filter for the sword upgrade
