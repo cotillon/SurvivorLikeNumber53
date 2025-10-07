@@ -26,6 +26,8 @@ var forks := 0
 var chains := 0
 var pierces := 0
 
+#the angle at which our projectiles will calculate fork
+var fork_angle: float = -45
 
 
 func _ready() -> void:
@@ -89,7 +91,6 @@ func spawn_projectile():
 
 func position_and_aim_projectile(fireball_instance: FireballAbility, attack: int):
 
-
 	if (enemies.size() - 1) >= attack:
 		var start_position = player.global_position
 		fireball_instance.global_position = start_position
@@ -100,15 +101,13 @@ func position_and_aim_projectile(fireball_instance: FireballAbility, attack: int
 		fireball_instance.set_direction(player.global_position.direction_to(enemies[attack].global_position))
 
 
-#! the angle on this isn't quite right
 func fork_projectile(fireball_instance: FireballAbility, prev_position: Vector2, prev_velocity):
 
 	enemies = get_and_sort_enemies()
 
-	for projectile in number_of_forked_projectiles:
+	var calculated_fork_angle = fork_angle
 
-		if enemies.size() <= projectile:
-			return
+	for projectile in number_of_forked_projectiles:
 
 		var forked_fireball = fireball_ability.instantiate() as FireballAbility
 
@@ -121,10 +120,9 @@ func fork_projectile(fireball_instance: FireballAbility, prev_position: Vector2,
 
 		forked_fireball.global_position = prev_position
 
-		var fork_angle = float(projectile)
-
-		var direction = prev_velocity.rotated(((TAU / 3) / number_of_forked_projectiles) * (fork_angle / 3))
+		var direction = prev_velocity.rotated(deg_to_rad(calculated_fork_angle))
 		var target_rotation = direction.angle()
+
 		forked_fireball.set_rotation_on_spawn(target_rotation)
 		forked_fireball.velocity_component.max_speed = speed
 		forked_fireball.set_direction(direction.normalized())
@@ -132,8 +130,13 @@ func fork_projectile(fireball_instance: FireballAbility, prev_position: Vector2,
 		forked_fireball.animation_player.play("fork")
 		forked_fireball.hitbox_component.damage = calculate_damage()
 
-		#!
-		# enemies.remove_at(projectile)
+
+		if number_of_forked_projectiles == 2:
+			calculated_fork_angle = abs(fork_angle)
+		if number_of_forked_projectiles == 3:
+			calculated_fork_angle += abs(fork_angle)
+		else:
+			calculated_fork_angle += abs(fork_angle * (2.0/3.0))
 
 
 func on_timer_timeout():
